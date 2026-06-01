@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANT - Login</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Cabeçalho do App -->
+        <div class="brand">
+            <span class="logo-icon">🐜</span>
+            <span class="logo-text">ANT</span>
+        </div>
 
+        <!-- Card do Formulário de Login -->
+        <div class="login-card">
+            <div class="avatar-container">
+                <div class="avatar-icon">👤</div>
+            </div>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" value="12345678" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login">LOGIN</button>
+            </form>
+            <div id="error-message" class="error-msg"></div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
