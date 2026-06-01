@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANT - Dashboard</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar Responsivo -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="logo-icon">🐜</span>
+                <span class="logo-text">ANT</span>
+            </div>
+            <nav class="menu">
+                <button class="menu-btn active" onclick="switchTab('inicio')">Inicio</button>
+                <button class="menu-btn" onclick="switchTab('dre')">Minha DRE</button>
+                <button class="menu-btn" onclick="switchTab('estoque')">Estoque</button>
+                <button class="menu-btn" onclick="switchTab('saude')">Saúde do Negócio</button>
+                <button class="menu-btn" onclick="switchTab('perfil')">Perfil</button>
+            </nav>
+            <button class="menu-btn settings-btn" onclick="switchTab('ajustes')">⚙️ ajustes</button>
+        </aside>
 
+        <!-- Conteúdo Principal Dinâmico -->
+        <main class="main-content">
+            
+            <!-- ABA 1: INÍCIO -->
+            <section id="tab-inicio" class="tab-content active-tab">
+                <h2>Olá, Empreendedor!</h2>
+                <p class="subtitle">ANT: Automate aNd Transform</p>
+                
+                <div class="tip-banner">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Dica ANT do dia:</strong> Separe as contas profissionais das pessoais. Organização financeira é o alicerce do seu crescimento.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card shadow">
+                        <h3>💰 Receita Total</h3>
+                        <p class="value">R$ 12.450,00</p>
+                    </div>
+                    <div class="card shadow">
+                        <h3>📋 Despesas</h3>
+                        <p class="value">R$ 4.200,00</p>
+                    </div>
+                    <div class="card shadow">
+                        <h3>🪙 Lucro Líquido</h3>
+                        <p class="value-green">R$ 8.250,00</p>
+                    </div>
+                    <div class="card shadow">
+                        <h3>📈 Impacto Marketing</h3>
+                        <p class="value">R$ 5.950,00</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 2: MINHA DRE -->
+            <section id="tab-dre" class="tab-content">
+                <h2>Minha DRE</h2>
+                <p class="subtitle">Controle financeiro simples e direto</p>
+                
+                <div class="table-container shadow">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DESCRIÇÃO</th>
+                                <th>TIPO</th>
+                                <th>VALORES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Venda de Produtos</td><td><span class="badge badge-in">RECEITA</span></td><td>5000</td></tr>
+                            <tr><td>Prestação de Serviços</td><td><span class="badge badge-in">RECEITA</span></td><td>3500</td></tr>
+                            <tr><td>Impostos sobre Venda</td><td><span class="badge badge-out">DESPESAS</span></td><td>450</td></tr>
+                            <tr><td>Custos de Mercadoria (CPV)</td><td><span class="badge badge-out">DESPESAS</span></td><td>1200</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="dre-footer">
+                        <span>Lucro líquido</span>
+                        <strong class="value-green">R$ 6.400,00</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 3: ESTOQUE -->
+            <section id="tab-estoque" class="tab-content">
+                <h2>Meu Estoque</h2>
+                <div class="stock-header">
+                    <input type="text" placeholder="Buscar categoria ou produto..." class="search-bar">
+                    <div class="stock-total">TOTAL EM ESTOQUE: <strong>181</strong></div>
+                </div>
+                <div class="alert-banner">
+                    ⚠️ <strong>PRODUTOS ACABANDO:</strong> Alguns itens estão em nível crítico. Reponha logo para não perder vendas.
+                </div>
+            </section>
+
+            <!-- ABA 4: SAÚDE DO NEGÓCIO -->
+            <section id="tab-saude" class="tab-content">
+                <h2>Saúde do Negócio</h2>
+                <div class="cards-grid">
+                    <div class="card card-success">
+                        <h3>✔️ ACERTOS</h3>
+                        <ul>
+                            <li>A loja está sendo mais reconhecida</li>
+                            <li>Boas avaliações de clientes (Google Meu Negócio)</li>
+                        </ul>
+                    </div>
+                    <div class="card card-danger">
+                        <h3>❌ ERROS</h3>
+                        <ul>
+                            <li>Falta de planejamento</li>
+                            <li>Demora na reposição de produtos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 5: PERFIL -->
+            <section id="tab-perfil" class="tab-content">
+                <h2>Seu Perfil</h2>
+                <div class="profile-container shadow">
+                    <h3>👤 SOBRE VOCÊ</h3>
+                    <input type="text" value="Empreendedor Fulano de Souza" disabled>
+                    <h3>🏢 SEU NEGÓCIO</h3>
+                    <input type="text" value="Fulano Calçados" disabled>
+                </div>
+            </section>
+
+            <!-- ABA 6: AJUSTES -->
+            <section id="tab-ajustes" class="tab-content">
+                <h2>Ajustes & Sistemas</h2>
+                <div class="card shadow">
+                    <h3>Filtros de Daltonismo</h3>
+                    <div class="daltonism-options">
+                        <button class="btn-config">Protanopia</button>
+                        <button class="btn-config">Deuteranopia</button>
+                        <button class="btn-config">Tritanopia</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
