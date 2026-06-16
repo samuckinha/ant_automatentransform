@@ -1,91 +1,216 @@
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-}
+{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+        body {
+            display: flex;
+            background-color: #f4f3f9;
+            color: #111111;
+            min-height: 100vh;
+        }
 
-.logo-text {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--primary-green);
-}
+        /* Menu Lateral */
+        sidebar {
+            width: 240px;
+            background-color: #e9e7f2;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: space-between;
+        }
 
-.login-card {
-    background: var(--bg-card);
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 24px;
+            color: #5b3fa1;
+            margin-bottom: 20px;
+        }
 
-.avatar-container {
-    width: 80px;
-    height: 80px;
-    background: #e0e0e0;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 30px auto;
-}
+        .nav-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #111111;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
 
-.avatar-icon { font-size: 2.5rem; color: #a0a0a0; }
+        .nav-btn.active {
+            background-color: #0bb379;
+            color: #ffffff;
+        }
 
-.input-group {
-    text-align: left;
-    margin-bottom: 20px;
-}
+        .nav-btn:hover:not(.active) {
+            background-color: #f1f0f7;
+        }
 
-.input-group label {
-    font-weight: 600;
-    font-style: italic;
-    color: #444;
-    display: block;
-    margin-bottom: 5px;
-}
+        /* Conteúdo Principal */
+        main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
 
-.input-wrapper {
-    display: flex;
-    align-items: center;
-    background: #e1dae6;
-    border-radius: 25px;
-    padding: 5px 15px;
-}
+        .header-user {
+            margin-bottom: 25px;
+        }
 
-.input-wrapper input {
-    border: none;
-    background: transparent;
-    padding: 10px;
-    width: 100%;
-    outline: none;
-    color: var(--text-dark);
-}
+        .header-user h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
 
-.btn-login {
-    background-color: var(--primary-purple);
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 15px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 10px;
-}
+        .header-user p {
+            font-size: 12px;
+            color: #666;
+        }
 
-.btn-login:hover { background-color: #766483; }
-.error-msg { color: var(--alert-red); margin-top: 10px; font-size: 0.9rem; }
+        /* Banner de Dica */
+        .dica-banner {
+            background-color: #ffffff;
+            border: 2px solid #0bb379;
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .dica-icon {
+            background-color: #0bb379;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dica-texto h4 {
+            color: #0bb379;
+            font-size: 14px;
+        }
+
+        .dica-texto p {
+            font-size: 13px;
+            color: #333;
+        }
+
+        /* Grid de Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111111;
+        }
+
+        .card-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* Seção DRE */
+        .dre-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            max-width: 600px;
+        }
+
+        .dre-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .dre-header h3 {
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .dre-header a {
+            color: #0bb379;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .dre-row {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .btn-operacional {
+            width: 100%;
+            background-color: #0bb379;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            sidebar {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+            .logo-area {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .nav-btn {
+                width: calc(50% - 5px);
+                font-size: 13px;
+                padding: 8px;
+            }
+            main {
+                padding: 20px;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }

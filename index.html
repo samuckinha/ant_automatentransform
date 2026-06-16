@@ -3,47 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANT - Login</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/login.css">
-</head>
+    <title>ANT - Dashboard</title>
+    <!-- Link para ícones externos (opcional, para os cards) -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    </head>
 <body>
-    <div class="login-container">
-        <!-- Cabeçalho do App -->
-        <div class="brand">
-            <span class="logo-icon">🐜</span>
-            <span class="logo-text">ANT</span>
-        </div>
 
-        <!-- Card do Formulário de Login -->
-        <div class="login-card">
-            <div class="avatar-container">
-                <div class="avatar-icon">👤</div>
+    <!-- Menu Lateral -->
+    <sidebar>
+        <div>
+            <div class="logo-area">
+                <span>🐜 ANT</span>
             </div>
-            
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">✉️</span>
-                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Senha</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="password" value="12345678" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-login">LOGIN</button>
-            </form>
-            <div id="error-message" class="error-msg"></div>
+            <button class="nav-btn active">Início</button>
+            <button class="nav-btn">Minha DRE</button>
+            <button class="nav-btn">Estoque</button>
+            <button class="nav-btn">Saúde do Negócio</button>
+            <button class="nav-btn">Perfil</button>
         </div>
-    </div>
+        <button class="nav-btn"><i class="fa-solid fa-gear"></i> Ajustes</button>
+    </sidebar>
 
-    <script src="js/auth.js"></script>
+    <!-- Conteúdo da Página -->
+    <main>
+        <div class="header-user">
+            <h1>Olá, Empreendedor!</h1>
+            <p>ANT: Automate anD Transform</p>
+        </div>
+
+        <!-- Banner de Dica -->
+        <div class="dica-banner">
+            <div class="dica-icon">💡</div>
+            <div class="dica-texto">
+                <h4>Dica ANT do dia</h4>
+                <p>Separe as contas profissionais das pessoais. Organização financeira é o alicerce do seu crescimento.</p>
+            </div>
+        </div>
+
+        <!-- Grid de Cards de Valores -->
+        <div class="cards-grid">
+            <div class="card">
+                <span class="card-title">💵 Receita Total</span>
+                <span class="card-value" id="receita-val">R$ 12.450,00</span>
+            </div>
+            <div class="card">
+                <span class="card-title">📉 Despesas</span>
+                <span class="card-value" id="despesas-val">R$ 4.200,00</span>
+            </div>
+            <div class="card">
+                <span class="card-title">💰 Lucro Líquido</span>
+                <span class="card-value" id="lucro-val">R$ 8.250,00</span>
+            </div>
+            <div class="card">
+                <span class="card-title">📢 Impacto Marketing</span>
+                <span class="card-value" id="marketing-val">R$ 5.950,00</span>
+            </div>
+        </div>
+
+        <!-- DRE Simplificada -->
+        <div class="dre-section">
+            <div class="dre-header">
+                <h3>DRE SIMPLIFICADA</h3>
+                <a href="#">Ver Completa →</a>
+            </div>
+            <div class="dre-row">
+                <span>Faturamento Bruto</span>
+                <span id="faturamento-val">R$ 12.450,00</span>
+            </div>
+            <button class="btn-operacional">Lucro Operacional</button>
+        </div>
+    </main>
+
+    <!-- Script para futura integração com Banco de Dados -->
+    <script>
+        // Exemplo de como você vai alterar os valores via JavaScript após puxar do Supabase:
+        // document.getElementById('receita-val').innerText = "R$ " + valorDoBanco;
+    </script>
 </body>
 </html>
