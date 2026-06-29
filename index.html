@@ -404,32 +404,154 @@
 
     <!-- SCRIPT DE NAVEGAÇÃO -->
     <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            document.getElementById('auth-screen').classList.add('hidden');
-            document.getElementById('dashboard-screen').classList.remove('hidden');
+       // ==========================================================================
+// 1. SISTEMA DE ROTEAMENTO (LANDING PAGE, LOGIN E CADASTRO)
+// ==========================================================================
+let currentAuthMode = 'login';
+
+function goToAuth(mode, selectedPlan = 'Pro') {
+    // Esconde a Landing Page e exibe a tela de Autenticação
+    document.getElementById('landing-screen').classList.add('hidden');
+    document.getElementById('auth-screen').classList.remove('hidden');
+    
+    // Chaveia o formulário para o modo correto (Login ou Cadastro)
+    toggleAuthMode(mode);
+    
+    // Pré-seleciona o plano escolhido caso vá para o Cadastro
+    if (mode === 'register') {
+        const planSelect = document.getElementById('register-plan');
+        if (planSelect) planSelect.value = selectedPlan;
+    }
+}
+
+function goToLanding() {
+    // Retorna para a página inicial com os planos
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('landing-screen').classList.remove('hidden');
+}
+
+function toggleAuthMode(mode) {
+    currentAuthMode = mode;
+    const registerFields = document.querySelectorAll('.register-only');
+    const submitBtn = document.getElementById('btn-auth-submit');
+    const tabLogin = document.getElementById('tab-btn-login');
+    const tabRegister = document.getElementById('tab-btn-register');
+    
+    // Reseta classes ativas das abas
+    if (tabLogin) tabLogin.classList.remove('active');
+    if (tabRegister) tabRegister.classList.remove('active');
+    
+    if (mode === 'login') {
+        if (tabLogin) tabLogin.classList.add('active');
+        if (submitBtn) submitBtn.innerText = "ENTRAR";
+        registerFields.forEach(el => el.classList.add('hidden'));
+    } else {
+        if (tabRegister) tabRegister.classList.add('active');
+        if (submitBtn) submitBtn.innerText = "CRIAR CONTA";
+        registerFields.forEach(el => el.classList.remove('hidden'));
+    }
+}
+
+// ==========================================================================
+// 2. INTEGRAÇÃO E SUBMISSÃO DE FORMULÁRIO (SUPABASE / SEGURANÇA)
+// ==========================================================================
+async function handleAuthSubmit(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
+    
+    try {
+        if (currentAuthMode === 'login') {
+            // Executa o login na API do Supabase
+            const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            if (authError) throw authError;
+
+            // Valida privilégios de Desenvolvedor no banco de dados
+            const { data: perfil, error: perfilError } = await supabase
+                .from('perfis')
+                .select('is_dev')
+                .eq('id', authData.user.id)
+                .single();
+                
+            if (perfil && perfil.is_dev === true) {
+                document.getElementById('menu-btn-admin').classList.remove('hidden');
+            } else {
+                document.getElementById('menu-btn-admin').classList.add('hidden');
+            }
+
+        } else {
+            // Executa a criação de uma nova conta de usuário comum
+            const name = document.getElementById('register-name').value;
+            const plan = document.getElementById('register-plan').value;
+            
+            if (!name) { 
+                alert("Por favor, informe o nome completo ou o nome da sua empresa."); 
+                return; 
+            }
+
+            const { data: regData, error: regError } = await supabase.auth.signUp({
+                email: email,
+                password: password
+            });
+            if (regError) throw regError;
+
+            // Insere os dados básicos na tabela de perfis de forma segura (is_dev sempre false)
+            const { error: perfilError } = await supabase.from('perfis').insert({
+                id: regData.user.id,
+                email: email,
+                is_dev: false
+            });
+            if (perfilError) throw perfilError;
+
+            alert(`Sua empresa "${name}" foi cadastrada com sucesso no plano ${plan}!`);
         }
 
-        function handleLogout() {
-            document.getElementById('dashboard-screen').classList.add('hidden');
-            document.getElementById('auth-screen').classList.remove('hidden');
-        }
+        // Se passar por qualquer uma das validações, exibe o painel
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('dashboard-screen').classList.remove('hidden');
+        if (errorMessage) errorMessage.innerText = "";
 
-        function switchTab(tabId, buttonElement) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active-tab'));
+    } catch (error) {
+        if (errorMessage) errorMessage.innerText = error.message || "Usuário ou senha inválidos.";
+    }
+}
 
-            const buttons = document.querySelectorAll('.menu-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+function handleLogout() {
+    // Esconde a interface administrativa e envia o usuário de volta para a Landing Page
+    document.getElementById('dashboard-screen').classList.add('hidden');
+    document.getElementById('landing-screen').classList.remove('hidden');
+    
+    // Garante que o painel de dev seja trancado
+    document.getElementById('menu-btn-admin').classList.add('hidden');
+    
+    // Termina a sessão no Supabase
+    supabase.auth.signOut();
+}
 
-            document.getElementById(tabId).classList.add('active-tab');
-            buttonElement.classList.add('active');
-        }
-        // --- GERENCIADOR DE TEMAS (MODO ESCURO) ---
+// ==========================================================================
+// 3. NAVEGAÇÃO DA DASHBOARD (ABAS INTERNAS)
+// ==========================================================================
+function switchTab(tabId, buttonElement) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active-tab'));
+
+    const buttons = document.querySelectorAll('.menu-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active-tab');
+    buttonElement.classList.add('active');
+}
+
+// ==========================================================================
+// 4. PREFERÊNCIAS VISUAIS (MODO ESCURO E ACESSIBILIDADE DALTONISMO)
+// ==========================================================================
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     
-    // Altera a classe ativa dos botões de tema
     document.getElementById('btn-light').classList.remove('active');
     document.getElementById('btn-dark').classList.remove('active');
     
@@ -440,19 +562,18 @@ function setTheme(theme) {
     }
 }
 
-// --- GERENCIADOR DE FILTROS DE DALTONISMO ---
 function setDaltonism(type) {
     const body = document.body;
     
-    // Remove qualquer filtro aplicado anteriormente
+    // Remove todos os filtros aplicados anteriormente
     body.classList.remove('filter-protanopia', 'filter-deuteranopia', 'filter-tritanopia');
     
-    // Se não for o modo padrão, injeta a classe correspondente ao filtro SVG do CSS
+    // Injeta a classe correspondente ao filtro matemático SVG configurado no CSS
     if (type !== 'normal') {
         body.classList.add(`filter-${type}`);
     }
     
-    // Atualiza o estado visual (cor roxa) nos botões de daltonismo
+    // Modifica o estado visual dos botões de daltonismo
     const buttons = document.querySelectorAll('.btn-daltonism');
     buttons.forEach(btn => {
         if (btn.getAttribute('data-filter') === type) {
@@ -461,115 +582,13 @@ function setDaltonism(type) {
             btn.classList.remove('active');
         }
     });
-    // --- ROTEAMENTO DA LANDING PAGE E AUTH ---
-let currentAuthMode = 'login';
-
-function goToAuth(mode, selectedPlan = 'Pro') {
-    document.getElementById('landing-screen').classList.add('hidden');
-    document.getElementById('auth-screen').classList.remove('hidden');
-    
-    // Define se vai abrir direto em login ou cadastro
-    toggleAuthMode(mode);
-    
-    // Pré-seleciona o plano clicado se for cadastro
-    if (mode === 'register') {
-        document.getElementById('register-plan').value = selectedPlan;
-    }
 }
 
-function goToLanding() {
-    document.getElementById('auth-screen').classList.add('hidden');
-    document.getElementById('landing-screen').classList.remove('hidden');
-}
-
-function toggleAuthMode(mode) {
-    currentAuthMode = mode;
-    const registerFields = document.querySelectorAll('.register-only');
-    const submitBtn = document.getElementById('btn-auth-submit');
-    
-    // Atualiza estado das abas visuais
-    document.getElementById('tab-btn-login').classList.remove('active');
-    document.getElementById('tab-btn-register').classList.remove('active');
-    
-    if (mode === 'login') {
-        document.getElementById('tab-btn-login').classList.add('active');
-        submitBtn.innerText = "ENTRAR";
-        registerFields.forEach(el => el.classList.add('hidden'));
-    } else {
-        document.getElementById('tab-btn-register').classList.add('active');
-        submitBtn.innerText = "CRIAR CONTA";
-        registerFields.forEach(el => el.classList.remove('hidden'));
-    }
-}
-
-// --- SUBMISSÃO DO FORMULÁRIO DO SUPABASE ---
-async function handleAuthSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('error-message');
-    
-    try {
-        if (currentAuthMode === 'login') {
-            // LÓGICA DE LOGIN (Sua atual integrada ao Supabase)
-            const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-                email, password
-            });
-            if (authError) throw authError;
-
-            // Checagem de privilégios Dev
-            const { data: perfil } = await supabase.from('perfis').select('is_dev').eq('id', authData.user.id).single();
-            if (perfil && perfil.is_dev) {
-                document.getElementById('menu-btn-admin').classList.remove('hidden');
-            }
-
-        } else {
-            // LÓGICA DE NOVO CADASTRO (Novo controle solicitado)
-            const name = document.getElementById('register-name').value;
-            const plan = document.getElementById('register-plan').value;
-            
-            if(!name) { alert("Por favor, preencha o nome da sua empresa."); return; }
-
-            // 1. Registra o usuário no Auth do Supabase
-            const { data: regData, error: regError } = await supabase.auth.signUp({
-                email, password
-            });
-            if (regError) throw regError;
-
-            // 2. Registra os metadados na tabela de perfis (is_dev entra como false por padrão)
-            const { error: perfilError } = await supabase.from('perfis').insert({
-                id: regData.user.id,
-                email: email,
-                is_dev: false
-            });
-            if (perfilError) throw perfilError;
-
-            alert(`Conta da empresa "${name}" criada com sucesso no plano ${plan}! Verifique seu e-mail para confirmação.`);
-        }
-
-        // Se logou ou cadastrou com sucesso, avança para a dashboard
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('dashboard-screen').classList.remove('hidden');
-        errorMessage.innerText = "";
-
-    } catch (error) {
-        errorMessage.innerText = error.message || "Erro operacional no sistema de autenticação.";
-    }
-}
-
-// Garante retorno seguro ao deslogar
-function handleLogout() {
-    document.getElementById('dashboard-screen').classList.add('hidden');
-    document.getElementById('landing-screen').classList.remove('hidden'); // Retorna direto para a Landing Page
-    document.getElementById('menu-btn-admin').classList.add('hidden');
-    supabase.auth.signOut();
-}
 
 
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
-
 </body>
 </html>
