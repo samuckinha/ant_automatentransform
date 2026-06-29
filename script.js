@@ -1,4 +1,20 @@
-// Exemplo lógico de redirecionamento no arquivo js/auth.js
+// 1. Importação modular estável (Independe de escopo global de janela ou CDN clássica)
+import { createClient } from 'https://jsdelivr.net';
+
+// 2. Credenciais de Conexão (Substitua pelos dados do seu painel do Supabase)
+const SUPABASE_URL = "https://SEU_PROJETO.supabase.co";
+const SUPABASE_ANON_KEY = "SUA_CHAVE_ANON_PUBLICA_AQUI";
+
+// 3. Inicialização e blindagem do cliente interno
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ==========================================================================
+// SEU CÓDIGO ATUAL DA DASHBOARD COMEÇA AQUI DEBAIXO
+// ==========================================================================
+let currentAuthMode = 'login';
+
+function goToAuth(mode, selectedPlan = 'Pro') {
+
 async function verificarNivelAcesso(user) {
     const { data, error } = await supabase
         .from('perfis')
