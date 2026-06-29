@@ -428,3 +428,32 @@ td {
     border-radius: 6px; 
     font-size: 0.75rem; 
     font-weight: 700; 
+padding-left:
+ 20px;margin-top: 12px;
+ color: var(--text-muted);
+ line-height: 1.6;}
+/* ABA 5: PERFIL */.profile-container
+ {background: var(--bg-card);
+    padding: 32px;border-radius: 16px;
+    border: 1px solid var(--border-color);}
+    .profile-container h3 {margin-top: 16px;margin-bottom: 8px;}.]
+    input-styled {width: 100%;padding: 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;background: var(--bg-window);
+        color: var(--text-main);
+        margin-bottom: 16px;}
+        /* ==================CONFIGURAÇÕES (TEMA E AJUSTES DE ACESSIBILIDADE)============================= *
+        /.config-section {margin-bottom: 24px;}.
+        config-desc {color: var(--text-muted);
+        font-size: 14px;margin-top: 4px;margin-bottom: 16px;}
+        theme-toggle-container, 
+        .daltonism-options {display: flex;flex-wrap: wrap;gap: 12px;margin-top: 12px;}]
+        .btn-config, .btn-daltonism {padding: 12px 20px;background: var(--bg-window);
+        border: 1.5px solid var(--border-color);
+        color: var(--text-main);
+        border-radius: 10px;font-weight: 600;
+        cursor: pointer;}
+        .btn-config:hover, .btn-daltonism:hover {border-color: var(--purple-primary);}.
+        btn-config.active, .btn-daltonism.active {background: var(--purple-primary);color: white;border-color: var(--purple-primary);
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);}
+### 
