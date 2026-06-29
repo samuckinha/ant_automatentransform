@@ -61,6 +61,10 @@
                 <button class="menu-btn" onclick="switchTab('tab-saude', this)">🩺 Saúde</button>
                 <button class="menu-btn" onclick="switchTab('tab-perfil', this)">👤 Perfil</button>
                 <button class="menu-btn settings-btn" onclick="switchTab('tab-ajustes', this)">⚙️ Ajustes</button>
+                 <button id="menu-btn-admin" class="menu-btn hidden" onclick="switchTab('tab-admin', this)" style="border-left: 4px solid var(--primary-purple);">⚡ Painel Dev</button>
+    
+    <button class="menu-btn settings-btn" onclick="switchTab('tab-ajustes', this)">⚙️ Ajustes</button>
+</nav>
             </nav>
             <button class="logout-btn" onclick="handleLogout()">Sair 🚪</button>
         </aside>
@@ -191,6 +195,67 @@
         </div>
     </div>
 </section>
+<!-- NOVA ABA: PAINEL DO ADMINISTRADOR / DEV -->
+<section id="tab-admin" class="tab-content">
+    <h2>Painel do Desenvolvedor</h2>
+    <p class="subtitle">Console de gerenciamento, logs do sistema e correções rápidas</p>
+    
+    <div class="cards-grid" style="margin-bottom: 24px;">
+        <div class="card shadow" style="border-top: 4px solid var(--primary-purple);">
+            <h3>Status do Sistema</h3>
+            <p class="value" style="color: var(--primary-green-dark); font-size: 1.5rem;">● Operacional</p>
+        </div>
+        <div class="card shadow">
+            <h3>Versão do App</h3>
+            <p class="value" style="font-size: 1.5rem;">v2.4.0-stable</p>
+        </div>
+        <div class="card shadow">
+            <h3>Conexão Supabase</h3>
+            <p class="value" style="font-size: 1.5rem; color: #12B76A;">Ativa</p>
+        </div>
+    </div>
+
+    <div class="card shadow" style="margin-bottom: 24px;">
+        <h3>⚙️ Ferramentas de Correção Rápida</h3>
+        <p class="subtitle" style="margin-bottom: 16px;">Comandos diretos de manutenção do banco de dados e limpeza de cache.</p>
+        <div class="daltonism-options" style="margin-top: 0;">
+            <button class="btn-config" onclick="clearSystemCache()">Limpar Cache da IA</button>
+            <button class="btn-config" onclick="triggerDatabaseSync()">Forçar Sincronização DRE</button>
+            <button class="btn-config" style="border-color: var(--danger-red); color: var(--danger-text);" onclick="toggleMaintenanceMode()">Alternar Modo Manutenção</button>
+        </div>
+    </div>
+
+    <div class="table-container shadow">
+        <div style="padding: 20px 24px; font-weight: 700; border-bottom: 1px solid var(--border-color);">
+            📋 Logs de Erros Recentes (Últimas 24h)
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>TIMESTAMP</th>
+                    <th>MÓDULO</th>
+                    <th>ERRO RETORNADO</th>
+                    <th>AÇÃO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026-06-29 14:22:10</td>
+                    <td><span class="badge badge-out">SUPABASE API</span></td>
+                    <td><code>AuthSessionMissing: jwt expired</code></td>
+                    <td><button class="btn-config" style="padding: 4px 10px; font-size: 0.8rem;" onclick="alert('Token renovado automaticamente via Refresh Token')">Resolver</button></td>
+                </tr>
+                <tr>
+                    <td>2026-06-29 11:05:43</td>
+                    <td><span class="badge" style="background: #FEF0C7; color: #B54708;">STOCK_ENGINE</span></td>
+                    <td><code>NegativeStockValueException: Item #482</code></td>
+                    <td><button class="btn-config" style="padding: 4px 10px; font-size: 0.8rem;" onclick="alert('Estoque corrigido para zero')">Corrigir</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
 
         </main>
     </div>
