@@ -47,14 +47,22 @@ body {
     margin-bottom: 30px;
 }
 
-.logo-icon { font-size: 2.5rem; }
-.logo-text { font-size: 2rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); }
-.logo-img {
-    width: 30px;        /* Tamanho micro e discreto */
-    height: auto;       /* Mantém a proporção sem distorcer */
-    display: inline-block;
-    vertical-align: middle;
+.logo-icon img {
+    display: block;
 }
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo-img-sidebar {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
 
 /* Controla a imagem no canto superior esquerdo da Sidebar */
 .logo-img-sidebar {
