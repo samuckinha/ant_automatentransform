@@ -49,6 +49,27 @@ body {
 
 .logo-icon { font-size: 2.5rem; }
 .logo-text { font-size: 2rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); }
+.logo-img {
+    width: 30px;        /* Tamanho micro e discreto */
+    height: auto;       /* Mantém a proporção sem distorcer */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Controla a imagem no canto superior esquerdo da Sidebar */
+.logo-img-sidebar {
+    width: 24px;        /* Ainda menor para encaixar perfeitamente com o texto do menu */
+    height: auto;       /* Mantém a proporção */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Garante que o container da logo alinhe os elementos lado a lado */
+.brand, .brand-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;           /* Espaçamento perfeito entre a imagem e o texto ANT */
+}
 
 .login-card {
     background: var(--bg-card);
@@ -274,26 +295,4 @@ td { padding: 18px 24px; font-size: 0.95rem; border-bottom: 1px solid var(--bord
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(4px); }
     to { opacity: 1; transform: translateY(0); }
-}
-/* Controla a imagem na tela de login */
-.logo-img {
-    width: 30px;        /* Tamanho micro e discreto */
-    height: auto;       /* Mantém a proporção sem distorcer */
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Controla a imagem no canto superior esquerdo da Sidebar */
-.logo-img-sidebar {
-    width: 24px;        /* Ainda menor para encaixar perfeitamente com o texto do menu */
-    height: auto;       /* Mantém a proporção */
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Garante que o container da logo alinhe os elementos lado a lado */
-.brand, .brand-sidebar {
-    display: flex;
-    align-items: center;
-    gap: 8px;           /* Espaçamento perfeito entre a imagem e o texto ANT */
 }
