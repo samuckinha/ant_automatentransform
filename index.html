@@ -3,81 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANT - Dashboard</title>
-    <!-- Link para ícones externos (opcional, para os cards) -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    </head>
+    <title>ANT - Business Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-    <!-- Menu Lateral -->
-    <sidebar>
-        <div>
-            <div class="logo-area">
-                <span>🐜 ANT</span>
-            </div>
-            <button class="nav-btn active">Início</button>
-            <button class="nav-btn">Minha DRE</button>
-            <button class="nav-btn">Estoque</button>
-            <button class="nav-btn">Saúde do Negócio</button>
-            <button class="nav-btn">Perfil</button>
-        </div>
-        <button class="nav-btn"><i class="fa-solid fa-gear"></i> Ajustes</button>
-    </sidebar>
-
-    <!-- Conteúdo da Página -->
-    <main>
-        <div class="header-user">
-            <h1>Olá, Empreendedor!</h1>
-            <p>ANT: Automate anD Transform</p>
+    <!-- 1. TELA DE LOGIN (Inicialmente visível) -->
+    <div id="auth-screen" class="login-container">
+        <div class="brand">
+            <span class="logo-icon">"<img src="ant.jpg" alt=""></span>
+            <span class="logo-text">ANT</span>
         </div>
 
-        <!-- Banner de Dica -->
-        <div class="dica-banner">
-            <div class="dica-icon">💡</div>
-            <div class="dica-texto">
-                <h4>Dica ANT do dia</h4>
-                <p>Separe as contas profissionais das pessoais. Organização financeira é o alicerce do seu crescimento.</p>
+        <div class="login-card shadow">
+            <div class="avatar-container">
+                <div class="avatar-icon">👤</div>
             </div>
-        </div>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
+                    </div>
+                </div>
 
-        <!-- Grid de Cards de Valores -->
-        <div class="cards-grid">
-            <div class="card">
-                <span class="card-title">💵 Receita Total</span>
-                <span class="card-value" id="receita-val">R$ 12.450,00</span>
-            </div>
-            <div class="card">
-                <span class="card-title">📉 Despesas</span>
-                <span class="card-value" id="despesas-val">R$ 4.200,00</span>
-            </div>
-            <div class="card">
-                <span class="card-title">💰 Lucro Líquido</span>
-                <span class="card-value" id="lucro-val">R$ 8.250,00</span>
-            </div>
-            <div class="card">
-                <span class="card-title">📢 Impacto Marketing</span>
-                <span class="card-value" id="marketing-val">R$ 5.950,00</span>
-            </div>
-        </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" value="12345678" required>
+                    </div>
+                </div>
 
-        <!-- DRE Simplificada -->
-        <div class="dre-section">
-            <div class="dre-header">
-                <h3>DRE SIMPLIFICADA</h3>
-                <a href="#">Ver Completa →</a>
-            </div>
-            <div class="dre-row">
-                <span>Faturamento Bruto</span>
-                <span id="faturamento-val">R$ 12.450,00</span>
-            </div>
-            <button class="btn-operacional">Lucro Operacional</button>
+                <button type="submit" class="btn-login">LOGIN</button>
+            </form>
+            <div id="error-message" class="error-msg"></div>
         </div>
-    </main>
+    </div>
 
-    <!-- Script para futura integração com Banco de Dados -->
+    <!-- 2. TELA DA DASHBOARD (Oculta por padrão) -->
+    <div id="dashboard-screen" class="dashboard-wrapper hidden">
+        <aside class="sidebar">
+            <div class="brand-sidebar">
+                <span class="logo-icon">🐜</span>
+                <span class="logo-text">ANT</span>
+            </div>
+            <nav class="menu">
+                <button class="menu-btn active" onclick="switchTab('tab-resumo', this)">💰 Resumo</button>
+                <button class="menu-btn" onclick="switchTab('tab-dre', this)">📋 Minha DRE</button>
+                <button class="menu-btn" onclick="switchTab('tab-estoque', this)">📦 Estoque</button>
+                <button class="menu-btn" onclick="switchTab('tab-saude', this)">🩺 Saúde</button>
+                <button class="menu-btn" onclick="switchTab('tab-perfil', this)">👤 Perfil</button>
+                <button class="menu-btn settings-btn" onclick="switchTab('tab-ajustes', this)">⚙️ Ajustes</button>
+            </nav>
+            <button class="logout-btn" onclick="handleLogout()">Sair 🚪</button>
+        </aside>
+
+        <main class="main-content">
+            <!-- ABA 1: RESUMO -->
+            <section id="tab-resumo" class="tab-content active-tab">
+                <h2>Resumo Financeiro</h2>
+                <p class="subtitle">Visão geral do seu negócio impulsionado por IA</p>
+                <div class="cards-grid">
+                    <div class="card shadow">
+                        <h3>Total Receita</h3>
+                        <p class="value">R$ 12.450,00</p>
+                    </div>
+                    <div class="card shadow">
+                        <h3>Despesas</h3>
+                        <p class="value">R$ 4.200,00</p>
+                    </div>
+                    <div class="card shadow border-highlight">
+                        <h3>Lucro Líquido</h3>
+                        <p class="value-green">R$ 8.250,00</p>
+                    </div>
+                    <div class="card shadow">
+                        <h3>Impacto Marketing</h3>
+                        <p class="value">R$ 5.950,00</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 2: MINHA DRE -->
+            <section id="tab-dre" class="tab-content">
+                <h2>Minha DRE</h2>
+                <p class="subtitle">Controle financeiro simples e direto</p>
+                
+                <div class="table-container shadow">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DESCRIÇÃO</th>
+                                <th>TIPO</th>
+                                <th>VALORES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Venda de Produtos</td><td><span class="badge badge-in">RECEITA</span></td><td>R$ 5.000,00</td></tr>
+                            <tr><td>Prestação de Serviços</td><td><span class="badge badge-in">RECEITA</span></td><td>R$ 3.500,00</td></tr>
+                            <tr><td>Impostos sobre Venda</td><td><span class="badge badge-out">DESPESA</span></td><td>R$ 450,00</td></tr>
+                            <tr><td>Custos de Mercadoria (CPV)</td><td><span class="badge badge-out">DESPESA</span></td><td>R$ 1.200,00</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="dre-footer">
+                        <span>Lucro Líquido Real</span>
+                        <strong class="value-green">R$ 6.400,00</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 3: ESTOQUE -->
+            <section id="tab-estoque" class="tab-content">
+                <h2>Meu Estoque</h2>
+                <p class="subtitle">Gerenciamento inteligente de produtos</p>
+                <div class="stock-header">
+                    <input type="text" placeholder="Buscar categoria ou produto..." class="search-bar shadow">
+                    <div class="stock-total shadow">TOTAL EM ESTOQUE: <strong>181</strong></div>
+                </div>
+                <div class="alert-banner">
+                    ⚠️ <strong>PRODUTOS ACABANDO:</strong> Alguns itens estão em nível crítico. Reponha logo para não perder vendas.
+                </div>
+            </section>
+
+            <!-- ABA 4: SAÚDE DO NEGÓCIO -->
+            <section id="tab-saude" class="tab-content">
+                <h2>Saúde do Negócio</h2>
+                <p class="subtitle">Pontos de atenção coletados pela inteligência</p>
+                <div class="cards-grid">
+                    <div class="card card-success shadow">
+                        <h3>✔️ ACERTOS</h3>
+                        <ul>
+                            <li>A loja está sendo mais reconhecida</li>
+                            <li>Boas avaliações de clientes (Google Meu Negócio)</li>
+                        </ul>
+                    </div>
+                    <div class="card card-danger shadow">
+                        <h3>❌ ERROS</h3>
+                        <ul>
+                            <li>Falta de planejamento</li>
+                            <li>Demora na reposição de produtos</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 5: PERFIL -->
+            <section id="tab-perfil" class="tab-content">
+                <h2>Seu Perfil</h2>
+                <p class="subtitle">Informações de cadastro do administrador</p>
+                <div class="profile-container shadow">
+                    <h3>👤 SOBRE VOCÊ</h3>
+                    <input type="text" value="Empreendedor Fulano de Souza" disabled class="input-styled">
+                    <h3>🏢 SEU NEGÓCIO</h3>
+                    <input type="text" value="Fulano Calçados" disabled class="input-styled">
+                </div>
+            </section>
+
+            <!-- ABA 6: AJUSTES -->
+            <section id="tab-ajustes" class="tab-content">
+                <h2>Ajustes & Sistemas</h2>
+                <p class="subtitle">Configurações de acessibilidade e interface</p>
+                <div class="card shadow">
+                    <h3>Filtros de Daltonismo</h3>
+                    <div class="daltonism-options">
+                        <button class="btn-config">Protanopia</button>
+                        <button class="btn-config">Deuteranopia</button>
+                        <button class="btn-config">Tritanopia</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- SCRIPT DE NAVEGAÇÃO -->
     <script>
-        // Exemplo de como você vai alterar os valores via JavaScript após puxar do Supabase:
-        // document.getElementById('receita-val').innerText = "R$ " + valorDoBanco;
+        function handleLogin(event) {
+            event.preventDefault();
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('dashboard-screen').classList.remove('hidden');
+        }
+
+        function handleLogout() {
+            document.getElementById('dashboard-screen').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+        }
+
+        function switchTab(tabId, buttonElement) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active-tab'));
+
+            const buttons = document.querySelectorAll('.menu-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active-tab');
+            buttonElement.classList.add('active');
+        }
     </script>
 </body>
 </html>

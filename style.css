@@ -1,216 +1,277 @@
-{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+/* Variáveis de Cores Estilo SaaS Minimalista (Inspirado na imagem) */
+:root {
+    --primary-purple: #7000FF;
+    --primary-cyan: #00D3A9;
+    --text-main: #1A1D24;
+    --text-muted: #667085;
+    --bg-light: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --border-color: #E4E7EC;
+    --danger-red: #FDA29B;
+    --danger-bg: #FEF3F2;
+    --success-green: #D1FADF;
+}
 
-        body {
-            display: flex;
-            background-color: #f4f3f9;
-            color: #111111;
-            min-height: 100vh;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
-        /* Menu Lateral */
-        sidebar {
-            width: 240px;
-            background-color: #e9e7f2;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: space-between;
-        }
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    min-height: 100vh;
+}
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            font-size: 24px;
-            color: #5b3fa1;
-            margin-bottom: 20px;
-        }
+/* Utilitários */
+.shadow { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04); }
+.hidden { display: none !important; }
 
-        .nav-btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background-color: #ffffff;
-            color: #111111;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: 0.2s;
-        }
+/* ---------------- TELA DE LOGIN ---------------- */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f3e8ff 0%, #e6fffa 100%);
+    padding: 20px;
+}
 
-        .nav-btn.active {
-            background-color: #0bb379;
-            color: #ffffff;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
 
-        .nav-btn:hover:not(.active) {
-            background-color: #f1f0f7;
-        }
+.logo-icon { font-size: 2.5rem; }
+.logo-text { font-size: 2rem; font-weight: 800; letter-spacing: 1px; color: var(--text-main); }
 
-        /* Conteúdo Principal */
-        main {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
+.login-card {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid var(--border-color);
+}
 
-        .header-user {
-            margin-bottom: 25px;
-        }
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
 
-        .header-user h1 {
-            font-size: 24px;
-            font-weight: 700;
-        }
+.avatar-icon {
+    font-size: 2rem;
+    background: var(--bg-light);
+    padding: 15px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
 
-        .header-user p {
-            font-size: 12px;
-            color: #666;
-        }
+.input-group {
+    margin-bottom: 20px;
+}
 
-        /* Banner de Dica */
-        .dica-banner {
-            background-color: #ffffff;
-            border: 2px solid #0bb379;
-            border-radius: 12px;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
 
-        .dica-icon {
-            background-color: #0bb379;
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px 16px;
+    background: var(--bg-light);
+}
 
-        .dica-texto h4 {
-            color: #0bb379;
-            font-size: 14px;
-        }
+.input-icon { margin-right: 12px; font-size: 1.1rem; }
 
-        .dica-texto p {
-            font-size: 13px;
-            color: #333;
-        }
+.input-wrapper input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--text-main);
+    outline: none;
+}
 
-        /* Grid de Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
-            margin-bottom: 40px;
-        }
+.btn-login {
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary-purple), var(--primary-cyan));
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.2s;
+}
 
-        .card {
-            background-color: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
+.btn-login:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
 
-        .card-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #111111;
-        }
+/* ---------------- TELA DA DASHBOARD ---------------- */
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
 
-        .card-value {
-            font-size: 22px;
-            font-weight: 700;
-        }
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background-color: var(--bg-card);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+}
 
-        /* Seção DRE */
-        .dre-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            max-width: 600px;
-        }
+.brand-sidebar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding-left: 10px;
+}
 
-        .dre-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
 
-        .dre-header h3 {
-            font-size: 18px;
-            letter-spacing: 0.5px;
-        }
+.menu-btn {
+    background: transparent;
+    border: none;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 10px;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
 
-        .dre-header a {
-            color: #0bb379;
-            font-size: 13px;
-            text-decoration: none;
-        }
+.menu-btn:hover {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+}
 
-        .dre-row {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+.menu-btn.active {
+    background: linear-gradient(90deg, var(--primary-purple), #8a33ff);
+    color: white;
+}
 
-        .btn-operacional {
-            width: 100%;
-            background-color: #0bb379;
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
+.settings-btn { margin-top: auto; background-color: var(--bg-light); }
+.logout-btn {
+    background: transparent;
+    border: 1px solid var(--danger-red);
+    color: #D92D20;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+}
 
-        /* Responsividade para Celulares */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            sidebar {
-                width: 100%;
-                flex-direction: row;
-                flex-wrap: wrap;
-                padding: 10px;
-            }
-            .logo-area {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            .nav-btn {
-                width: calc(50% - 5px);
-                font-size: 13px;
-                padding: 8px;
-            }
-            main {
-                padding: 20px;
-            }
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+/* Área Principal de Conteúdo */
+.main-content {
+    flex-grow: 1;
+    padding: 50px;
+    overflow-y: auto;
+}
+
+h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; }
+.subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
+
+.tab-content { display: none; }
+.tab-content.active-tab { display: block; animation: fadeIn 0.3s ease-in-out; }
+
+/* Grid Dinâmico de Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.card h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; }
+.card .value { font-size: 1.75rem; font-weight: 700; color: var(--text-main); }
+.card .value-green { font-size: 1.75rem; font-weight: 700; color: #027A48; }
+.border-highlight { border-left: 5px solid var(--primary-cyan); }
+
+/* Tabelas (DRE) */
+.table-container {
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th { background: var(--bg-light); padding: 16px 24px; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--border-color); }
+td { padding: 18px 24px; font-size: 0.95rem; border-bottom: 1px solid var(--border-color); }
+
+.badge { padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
+.badge-in { background: var(--success-green); color: #027A48; }
+.badge-out { background: var(--danger-bg); color: #B42318; }
+
+.dre-footer { display: flex; justify-content: space-between; padding: 24px; background: var(--bg-light); font-size: 1.1rem; font-weight: 700; }
+
+/* Elementos do Estoque */
+.stock-header { display: flex; gap: 16px; margin-bottom: 24px; }
+.search-bar { flex-grow: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 0.95rem; outline: none; }
+.stock-total { padding: 14px 24px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; }
+
+.alert-banner {
+    background: #FFF3CD;
+    border: 1px solid #FFEBAA;
+    color: #664D03;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+}
+
+/* Customizações Extras */
+.card-success { border-top: 4px solid #12B76A; }
+.card-danger { border-top: 4px solid #F04438; }
+.card ul { margin-top: 15px; padding-left: 20px; color: var(--text-muted); line-height: 1.6; }
+
+.profile-container { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color); }
+.profile-container h3 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; margin-top: 15px; }
+.input-styled { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-light); color: var(--text-muted); }
+
+.daltonism-options { display: flex; gap: 12px; margin-top: 15px; }
+.btn-config { padding: 10px 20px; border: 1px solid var(--border-color); background: var(--bg-light); border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-config:hover { background: #F2F4F7; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
