@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +8,11 @@
 </head>
 <body>
 
-    <!-- 1. TELA DE LOGIN (Inicialmente visível) -->
+    <!-- 1. TELA DE LOGIN -->
     <div id="auth-screen" class="login-container">
         <div class="brand">
             <span class="logo-icon">
-                <img src="ant.jpg" class="logo-img">
+                <img src="ant.jpg" class="logo-img" alt="ANT Logo">
             </span>
             <span class="logo-text">ANT</span>
         </div>
@@ -45,12 +45,12 @@
         </div>
     </div>
 
-    <!-- 2. TELA DA DASHBOARD (Oculta por padrão) -->
+    <!-- 2. TELA DA DASHBOARD -->
     <div id="dashboard-screen" class="dashboard-wrapper hidden">
         <aside class="sidebar">
             <div class="brand-sidebar">
                 <span class="logo-icon">
-                    <img src="ant.jpg" class="logo-img-sidebar">
+                    <img src="ant.jpg" class="logo-img-sidebar" alt="ANT Logo">
                 </span>
                 <span class="logo-text">ANT</span>
             </div>
@@ -169,17 +169,39 @@
             <section id="tab-ajustes" class="tab-content">
                 <h2>Ajustes & Sistemas</h2>
                 <p class="subtitle">Configurações de acessibilidade e interface</p>
-                <div class="card shadow">
+                
+                <div class="card shadow config-section">
+                    <h3>Visualização da Interface</h3>
+                    <div class="theme-toggle-container">
+                        <button class="btn-config active" id="btn-light" onclick="setTheme('light')">☀️ Modo Claro</button>
+                        <button class="btn-config" id="btn-dark" onclick="setTheme('dark')">🌙 Modo Escuro</button>
+                    </div>
+                </div>
+
+                <div class="card shadow config-section">
                     <h3>Filtros de Daltonismo</h3>
+                    <p class="config-desc">Selecione uma opção para adaptar a matriz de cores da tela:</p>
                     <div class="daltonism-options">
-                        <button class="btn-config">Protanopia</button>
-                        <button class="btn-config">Deuteranopia</button>
-                        <button class="btn-config">Tritanopia</button>
+                        <button class="btn-daltonism active" data-filter="normal" onclick="setDaltonism('normal')">Padrão</button>
+                        <button class="btn-daltonism" data-filter="protanopia" onclick="setDaltonism('protanopia')">Protanopia (Sem Vermelho)</button>
+                        <button class="btn-daltonism" data-filter="deuteranopia" onclick="setDaltonism('deuteranopia')">Deuteranopia (Sem Verde)</button>
+                        <button class="btn-daltonism" data-filter="tritanopia" onclick="setDaltonism('tritanopia')">Tritanopia (Sem Azul)</button>
                     </div>
                 </div>
             </section>
         </main>
     </div>
+
+    <!-- MATRIZES DE FILTRO SVG PARA ACESSIBILIDADE DE DALTONISMO -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+        <defs>
+            <filter id="protanopia-filter">
+                <feColorMatrix type="matrix" values="0.567,0.433,0,0,0  0.558,0.442,0,0,0  0,0.242,0.758,0,0  0,0,0,1,0"/>
+            </filter>
+            <filter id="deuteranopia-filter">
+                <feColorMatrix type="matrix" values="0.625,0.375,0,0,0  0.7,0.3,0,0,0  0,0.3,0.7,0,0  0,0,0,1,0"/>
+            </filter>
+            <filter id="tritanopia-filter">
 
     <!-- SCRIPT DE NAVEGAÇÃO -->
     <script>

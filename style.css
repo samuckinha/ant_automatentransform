@@ -1,43 +1,102 @@
-/* Variáveis de Cores Estilo SaaS Minimalista (Inspirado na imagem) */
+/* ==========================================================================
+   VARIÁVEIS DE CORES E DESIGN TOKENS (SaaS Minimalista Adaptativo)
+   ========================================================================== */
 :root {
+    /* Cores de Identidade (Sempre Roxo e Verde) */
     --primary-purple: #7000FF;
-    --primary-cyan: #00D3A9;
+    --primary-purple-hover: #5900CC;
+    --primary-purple-light: rgba(112, 0, 255, 0.08);
+    
+    --primary-green: #00D3A9;
+    --primary-green-dark: #027A48;
+    --primary-green-light: #D1FADF;
+
+    /* Semânticos de Alerta */
+    --danger-red: #F04438;
+    --danger-bg: #FEF3F2;
+    --danger-text: #B42318;
+    --warning-yellow: #664D03;
+    --warning-bg: #FFF3CD;
+    --warning-border: #FFEBAA;
+    
+    /* Estrutura de Cores - TEMA CLARO (Default) */
+    --bg-window: #F9FAFB;
+    --bg-sidebar: #FFFFFF;
+    --bg-card: #FFFFFF;
     --text-main: #1A1D24;
     --text-muted: #667085;
-    --bg-light: #F9FAFB;
-    --bg-card: #FFFFFF;
     --border-color: #E4E7EC;
-    --danger-red: #FDA29B;
-    --danger-bg: #FEF3F2;
-    --success-green: #D1FADF;
+    --input-bg: #F9FAFB;
+    
+    /* Sombreamento Suave Avançado (Efeito Blur de Profundidade) */
+    --card-shadow: 0 4px 20px 0 rgba(112, 0, 255, 0.02), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
 }
 
+/* Estrutura de Cores - TEMA ESCURO (Dark Mode Funcional) */
+[data-theme="dark"] {
+    --bg-window: #0B0F17;
+    --bg-sidebar: #121824;
+    --bg-card: #121824;
+    --text-main: #F4F5F7;
+    --text-muted: #98A2B3;
+    --border-color: #222B3D;
+    --input-bg: #1A2232;
+    
+    /* Suavização de elementos claros no modo escuro */
+    --primary-purple-light: rgba(112, 0, 255, 0.18);
+    --primary-green-light: rgba(0, 211, 169, 0.12);
+    --danger-bg: rgba(240, 68, 56, 0.12);
+    
+    /* Sombreamento Adaptado para Superfícies Escuras */
+    --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 4px 12px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* CLASSES DE ACESSIBILIDADE - FILTROS MATRICIAIS DE DALTONISMO */
+.filter-protanopia { filter: url('#protanopia-filter') !important; }
+.filter-deuteranopia { filter: url('#deuteranopia-filter') !important; }
+.filter-tritanopia { filter: url('#tritanopia-filter') !important; }
+
+/* ==========================================================================
+   RESETS E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    /* Transições suaves globais para troca de temas */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.15s ease;
 }
 
 body {
-    background-color: var(--bg-light);
+    background-color: var(--bg-window);
     color: var(--text-main);
     min-height: 100vh;
 }
 
 /* Utilitários */
-.shadow { box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04); }
-.hidden { display: none !important; }
+.shadow { 
+    box-shadow: var(--card-shadow); 
+}
+.hidden { 
+    display: none !important; 
+}
 
-/* ---------------- TELA DE LOGIN ---------------- */
+/* ==========================================================================
+   1. TELA DE LOGIN
+   ========================================================================== */
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, #f3e8ff 0%, #e6fffa 100%);
+    background: linear-gradient(135deg, var(--primary-purple-light) 0%, rgba(0, 211, 169, 0.05) 100%);
     padding: 20px;
+}
+
+[data-theme="dark"] .login-container {
+    background: linear-gradient(135deg, #070412 0%, #030a09 100%);
 }
 
 .brand {
@@ -55,28 +114,14 @@ body {
     width: 32px;
     height: 32px;
     object-fit: contain;
+    border-radius: 6px;
 }
 
-.logo-img-sidebar {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-
-/* Controla a imagem no canto superior esquerdo da Sidebar */
-.logo-img-sidebar {
-    width: 24px;        /* Ainda menor para encaixar perfeitamente com o texto do menu */
-    height: auto;       /* Mantém a proporção */
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/* Garante que o container da logo alinhe os elementos lado a lado */
-.brand, .brand-sidebar {
-    display: flex;
-    align-items: center;
-    gap: 8px;           /* Espaçamento perfeito entre a imagem e o texto ANT */
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-purple);
+    letter-spacing: -0.5px;
 }
 
 .login-card {
@@ -86,6 +131,7 @@ body {
     width: 100%;
     max-width: 420px;
     border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
 }
 
 .avatar-container {
@@ -95,11 +141,17 @@ body {
 }
 
 .avatar-icon {
-    font-size: 2rem;
-    background: var(--bg-light);
+    font-size: 1.8rem;
+    background: var(--input-bg);
     padding: 15px;
     border-radius: 50%;
     border: 1px solid var(--border-color);
+    color: var(--primary-purple);
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .input-group {
@@ -118,12 +170,20 @@ body {
     display: flex;
     align-items: center;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 12px 16px;
-    background: var(--bg-light);
+    background: var(--input-bg);
 }
 
-.input-icon { margin-right: 12px; font-size: 1.1rem; }
+.input-wrapper:focus-within {
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 0 4px var(--primary-purple-light);
+}
+
+.input-icon { 
+    margin-right: 12px; 
+    font-size: 1.1rem; 
+}
 
 .input-wrapper input {
     border: none;
@@ -136,36 +196,44 @@ body {
 
 .btn-login {
     width: 100%;
-    background: linear-gradient(90deg, var(--primary-purple), var(--primary-cyan));
+    background: linear-gradient(90deg, var(--primary-purple), var(--primary-purple-hover));
     color: white;
     border: none;
     padding: 14px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
+    box-shadow: 0 4px 14px rgba(112, 0, 255, 0.25);
     transition: transform 0.2s, filter 0.2s;
 }
 
 .btn-login:hover {
-    filter: brightness(1.05);
+    filter: brightness(1.1);
     transform: translateY(-1px);
 }
 
-/* ---------------- TELA DA DASHBOARD ---------------- */
+/* ==========================================================================
+   2. PAINEL DA DASHBOARD E INTERFACES
+   ========================================================================== */
 .dashboard-wrapper {
     display: flex;
     min-height: 100vh;
 }
 
-/* Sidebar */
+/* Barra Lateral (Sidebar) */
 .sidebar {
     width: 280px;
-    background-color: var(--bg-card);
+    background-color: var(--bg-sidebar);
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-color);
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
 }
 
 .brand-sidebar {
@@ -174,6 +242,15 @@ body {
     gap: 10px;
     margin-bottom: 40px;
     padding-left: 10px;
+}
+
+.logo-img-sidebar {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .menu {
@@ -191,47 +268,81 @@ body {
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 12px;
     color: var(--text-muted);
-    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .menu-btn:hover {
-    background-color: var(--bg-light);
+    background-color: var(--bg-window);
     color: var(--text-main);
 }
 
 .menu-btn.active {
-    background: linear-gradient(90deg, var(--primary-purple), #8a33ff);
+    background: var(--primary-purple);
     color: white;
+    box-shadow: 0 4px 12px rgba(112, 0, 255, 0.15);
 }
 
-.settings-btn { margin-top: auto; background-color: var(--bg-light); }
+.settings-btn { 
+    margin-top: auto; 
+    background-color: var(--input-bg); 
+    border: 1px solid var(--border-color);
+}
+
 .logout-btn {
     background: transparent;
-    border: 1px solid var(--danger-red);
-    color: #D92D20;
+    border: 1px solid var(--border-color);
+    color: var(--danger-text);
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
     margin-top: 15px;
+    text-align: center;
 }
 
-/* Área Principal de Conteúdo */
+.logout-btn:hover {
+    background: var(--danger-bg);
+    border-color: var(--danger-red);
+}
+
+/* Área de Conteúdo Principal */
 .main-content {
     flex-grow: 1;
+    margin-left: 280px; /* Alinhamento correto devido ao fixed sidebar */
     padding: 50px;
-    overflow-y: auto;
+    max-width: 1300px;
+    width: calc(100% - 280px);
 }
 
-h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; }
-.subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
+h2 { 
+    font-size: 1.8rem; 
+    font-weight: 800; 
+    margin-bottom: 4px; 
+    letter-spacing: -0.5px;
+}
 
-.tab-content { display: none; }
-.tab-content.active-tab { display: block; animation: fadeIn 0.3s ease-in-out; }
+.subtitle { 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    margin-bottom: 30px; 
+}
 
-/* Grid Dinâmico de Cards */
+.tab-content { 
+    display: none; 
+}
+
+.tab-content.active-tab { 
+    display: block; 
+    animation: fadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+/* ==========================================================================
+   CARDS DE DADOS (GRID & LAYOUT)
+   ========================================================================== */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -243,18 +354,49 @@ h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; }
     padding: 28px;
     border-radius: 16px;
     border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
 }
 
-.card h3 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; }
-.card .value { font-size: 1.75rem; font-weight: 700; color: var(--text-main); }
-.card .value-green { font-size: 1.75rem; font-weight: 700; color: #027A48; }
-.border-highlight { border-left: 5px solid var(--primary-cyan); }
+.card h3 { 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+    margin-bottom: 12px; 
+    font-weight: 700; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
-/* Tabelas (DRE) */
+.card .value { 
+    font-size: 1.85rem; 
+    font-weight: 800; 
+    color: var(--text-main); 
+    letter-spacing: -0.5px;
+}
+
+.card .value-green { 
+    font-size: 1.85rem; 
+    font-weight: 800; 
+    color: var(--primary-green-dark); 
+    letter-spacing: -0.5px;
+}
+
+[data-theme="dark"] .card .value-green {
+    color: var(--primary-green);
+}
+
+/* Detalhes de Destaque */
+.border-highlight { 
+    border-left: 5px solid var(--primary-green); 
+}
+
+/* ==========================================================================
+   TABELAS DE DADOS (DRE)
+   ========================================================================== */
 .table-container {
     background: var(--bg-card);
     border-radius: 16px;
     border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
     overflow: hidden;
 }
 
@@ -264,43 +406,25 @@ table {
     text-align: left;
 }
 
-th { background: var(--bg-light); padding: 16px 24px; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); border-bottom: 1px solid var(--border-color); }
-td { padding: 18px 24px; font-size: 0.95rem; border-bottom: 1px solid var(--border-color); }
-
-.badge { padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
-.badge-in { background: var(--success-green); color: #027A48; }
-.badge-out { background: var(--danger-bg); color: #B42318; }
-
-.dre-footer { display: flex; justify-content: space-between; padding: 24px; background: var(--bg-light); font-size: 1.1rem; font-weight: 700; }
-
-/* Elementos do Estoque */
-.stock-header { display: flex; gap: 16px; margin-bottom: 24px; }
-.search-bar { flex-grow: 1; padding: 14px 20px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 0.95rem; outline: none; }
-.stock-total { padding: 14px 24px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color); display: flex; align-items: center; }
-
-.alert-banner {
-    background: #FFF3CD;
-    border: 1px solid #FFEBAA;
-    color: #664D03;
-    padding: 16px;
-    border-radius: 12px;
-    font-size: 0.95rem;
+th { 
+    background: var(--input-bg); 
+    padding: 16px 24px; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    color: var(--text-muted); 
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.5px;
 }
 
-/* Customizações Extras */
-.card-success { border-top: 4px solid #12B76A; }
-.card-danger { border-top: 4px solid #F04438; }
-.card ul { margin-top: 15px; padding-left: 20px; color: var(--text-muted); line-height: 1.6; }
-
-.profile-container { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color); }
-.profile-container h3 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; margin-top: 15px; }
-.input-styled { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-light); color: var(--text-muted); }
-
-.daltonism-options { display: flex; gap: 12px; margin-top: 15px; }
-.btn-config { padding: 10px 20px; border: 1px solid var(--border-color); background: var(--bg-light); border-radius: 8px; font-weight: 600; cursor: pointer; }
-.btn-config:hover { background: #F2F4F7; }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
+td { 
+    padding: 18px 24px; 
+    font-size: 0.95rem; 
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
 }
+
+.badge { 
+    padding: 6px 12px; 
+    border-radius: 6px; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
