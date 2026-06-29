@@ -457,3 +457,307 @@ padding-left:
         btn-config.active, .btn-daltonism.active {background: var(--purple-primary);color: white;border-color: var(--purple-primary);
         box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);}
 ### 
+/* ==========================================================================
+   ESTILOS ADICIONAIS DA PRÉ-PÁGINA (LANDING PAGE) E CADASTRO
+   ========================================================================== */
+.landing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 80px 24px;
+    animation: fadeIn 0.4s ease;
+}
+
+.landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 60px;
+}
+
+.landing-nav-btns {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.btn-nav-landing {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-nav-landing.text-link {
+    background: transparent;
+    color: var(--text-main);
+}
+
+.btn-nav-landing.text-link:hover {
+    color: var(--primary-purple);
+}
+
+.btn-nav-landing.btn-filled {
+    background: var(--primary-purple);
+    color: white;
+}
+
+.btn-nav-landing.btn-filled:hover {
+    background: var(--primary-purple-hover);
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+}
+
+.hero-section h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--primary-purple), var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+    padding: 16px 32px;
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(112, 0, 255, 0.25);
+}
+
+.btn-hero-primary:hover {
+    background: var(--primary-purple-hover);
+    transform: translateY(-1px);
+}
+
+.btn-hero-secondary {
+    padding: 16px 32px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-hero-secondary:hover {
+    border-color: var(--primary-purple);
+}
+
+/* Container de Planos */
+.plans-container {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.plans-container h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    max-width: 800px;
+    margin: 40px auto 0 auto;
+}
+
+.plan-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-card.featured {
+    border: 2.5px solid var(--primary-purple);
+    box-shadow: 0 12px 30px rgba(112, 0, 255, 0.08);
+}
+
+.plan-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--input-bg);
+    padding: 4px 10px;
+    border-radius: 6px;
+    width: max-content;
+    margin-bottom: 16px;
+}
+
+.plan-tag.popular {
+    background: var(--primary-green-light);
+    color: var(--primary-green-dark);
+}
+
+[data-theme="dark"] .plan-tag.popular {
+    color: var(--primary-green);
+}
+
+.plan-card h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.plan-price {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+}
+
+.plan-price .period {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.plan-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.plan-features li {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-plan-select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.btn-plan-select:hover {
+    border-color: var(--primary-purple);
+    background: var(--bg-window);
+}
+
+.btn-plan-select.featured-btn {
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 14px rgba(112, 0, 255, 0.2);
+}
+
+.btn-plan-select.featured-btn:hover {
+    background: var(--primary-purple-hover);
+}
+
+/* Tela de Autenticação Modificada */
+.btn-back-landing {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-back-landing:hover {
+    color: var(--primary-purple);
+}
+
+.auth-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+.auth-tab-toggle {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+}
+
+.auth-tab-toggle.active {
+    color: var(--primary-purple);
+    border-bottom-color: var(--primary-purple);
+}
+
+.select-styled {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    cursor: pointer;
+}

@@ -8,6 +8,139 @@
 </head>
 <body>
 
+    <body>
+
+    <!-- ==========================================================================
+         0. PRÉ-PÁGINA INICIAL / LANDING PAGE COM PLANOS (Nova)
+         ========================================================================== -->
+    <div id="landing-screen" class="landing-container">
+        <header class="landing-header">
+            <div class="brand">
+                <span class="logo-icon"><img src="ant.jpg" class="logo-img" alt="ANT Logo"></span>
+                <span class="logo-text">ANT</span>
+            </div>
+            <div class="landing-nav-btns">
+                <button class="btn-nav-landing text-link" onclick="goToAuth('login')">Entrar</button>
+                <button class="btn-nav-landing btn-filled" onclick="goToAuth('register')">Criar Conta Grátis</button>
+            </div>
+        </header>
+
+        <section class="hero-section">
+            <h1>Impulsione seu negócio com <span class="text-gradient">Inteligência Real</span></h1>
+            <p class="hero-subtitle">A plataforma de Business Intelligence que simplifica sua DRE, controla seu estoque e prevê faturamento utilizando IA.</p>
+            <div class="hero-actions">
+                <button class="btn-hero-primary" onclick="goToAuth('register')">Começar Agora 🚀</button>
+                <a href="#plans-section" class="btn-hero-secondary">Ver Planos e Preços</a>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE PLANOS -->
+        <section id="plans-section" class="plans-container">
+            <h2>Planos sob medida para o seu crescimento</h2>
+            <p class="subtitle">Escolha a ferramenta ideal para o momento atual da sua empresa</p>
+
+            <div class="plans-grid">
+                <!-- Plano Starter -->
+                <div class="plan-card shadow">
+                    <div class="plan-tag">Essencial</div>
+                    <h3>Plano Starter</h3>
+                    <div class="plan-price">R$ 49<span class="period">/mês</span></div>
+                    <p class="plan-desc">Perfeito para autônomos e pequenas lojas começarem no BI.</p>
+                    <ul class="plan-features">
+                        <li>✔️ Resumo Financeiro Inteligente</li>
+                        <li>✔️ Minha DRE Automatizada</li>
+                        <li>✔️ Suporte via e-mail</li>
+                        <li>❌ Previsão de Demanda por IA</li>
+                    </ul>
+                    <button class="btn-plan-select" onclick="goToAuth('register', 'Starter')">Escolher Starter</button>
+                </div>
+
+                <!-- Plano Pro -->
+                <div class="plan-card shadow featured">
+                    <div class="plan-tag popular">Mais Vendido</div>
+                    <h3>Plano Pro</h3>
+                    <div class="plan-price">R$ 99<span class="period">/mês</span></div>
+                    <p class="plan-desc">O controle total do estoque ao financeiro com insights preditivos.</p>
+                    <ul class="plan-features">
+                        <li>✔️ Tudo do plano Starter</li>
+                        <li>✔️ Controle Inteligente de Estoque</li>
+                        <li>✔️ Diagnóstico "Saúde do Negócio"</li>
+                        <li>✔️ Insights de IA em Tempo Real</li>
+                    </ul>
+                    <button class="btn-plan-select featured-btn" onclick="goToAuth('register', 'Pro')">Experimentar Pro</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ==========================================================================
+         1. TELA DE AUTENTICAÇÃO UNIFICADA (Login & Cadastro Alternáveis)
+         ========================================================================== -->
+    <div id="auth-screen" class="login-container hidden">
+        <button class="btn-back-landing" onclick="goToLanding()">← Voltar ao Início</button>
+        
+        <div class="brand">
+            <span class="logo-icon"><img src="ant.jpg" class="logo-img" alt="ANT Logo"></span>
+            <span class="logo-text">ANT</span>
+        </div>
+
+        <div class="login-card shadow">
+            <!-- Abas internas para chaveamento limpo -->
+            <div class="auth-tabs">
+                <button id="tab-btn-login" class="auth-tab-toggle active" onclick="toggleAuthMode('login')">Entrar</button>
+                <button id="tab-btn-register" class="auth-tab-toggle" onclick="toggleAuthMode('register')">Cadastrar</button>
+            </div>
+
+            <!-- Formulário Unificado -->
+            <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                <!-- Campo exclusivo de cadastro (escondido por padrão) -->
+                <div class="input-group register-only hidden">
+                    <label for="register-name">Nome Completo / Empresa</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="register-name" placeholder="Ex: Fulano Calçados">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail Corporativo</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" value="12345678" required>
+                    </div>
+                </div>
+
+                <!-- Campo exclusivo de cadastro para capturar o plano vindo da Landing Page -->
+                <div class="input-group register-only hidden">
+                    <label for="register-plan">Plano Selecionado</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📋</span>
+                        <select id="register-plan" class="select-styled">
+                            <option value="Starter">Plano Starter - R$ 49/mês</option>
+                            <option value="Pro" selected>Plano Pro - R$ 99/mês</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-auth-submit" class="btn-login">ENTRAR</button>
+            </form>
+            <div id="error-message" class="error-msg"></div>
+        </div>
+    </div>
+
+    <!-- 2. TELA DA DASHBOARD (Mantém sua estrutura padrão de abas) -->
+    <div id="dashboard-screen" class="dashboard-wrapper hidden">
+        <!-- O conteúdo interno da sua sidebar e main permanece exatamente igual ao anterior -->
+
+
     <!-- 1. TELA DE LOGIN -->
     <div id="auth-screen" class="login-container">
         <div class="brand">
