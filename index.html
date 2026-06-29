@@ -165,30 +165,33 @@
                 </div>
             </section>
 
-            <!-- ABA 6: AJUSTES -->
-            <section id="tab-ajustes" class="tab-content">
-                <h2>Ajustes & Sistemas</h2>
-                <p class="subtitle">Configurações de acessibilidade e interface</p>
-                
-                <div class="card shadow config-section">
-                    <h3>Visualização da Interface</h3>
-                    <div class="theme-toggle-container">
-                        <button class="btn-config active" id="btn-light" onclick="setTheme('light')">☀️ Modo Claro</button>
-                        <button class="btn-config" id="btn-dark" onclick="setTheme('dark')">🌙 Modo Escuro</button>
-                    </div>
-                </div>
+      <!-- ABA 6: AJUSTES -->
+<section id="tab-ajustes" class="tab-content">
+    <h2>Ajustes & Sistemas</h2>
+    <p class="subtitle">Configurações de acessibilidade e interface</p>
+    
+    <!-- Configuração de Tema -->
+    <div class="card shadow config-group">
+        <h3>Visualização da Interface</h3>
+        <div class="theme-toggle-container">
+            <button class="btn-config active" id="btn-light" onclick="setTheme('light')">☀️ Modo Claro</button>
+            <button class="btn-config" id="btn-dark" onclick="setTheme('dark')">🌙 Modo Escuro</button>
+        </div>
+    </div>
 
-                <div class="card shadow config-section">
-                    <h3>Filtros de Daltonismo</h3>
-                    <p class="config-desc">Selecione uma opção para adaptar a matriz de cores da tela:</p>
-                    <div class="daltonism-options">
-                        <button class="btn-daltonism active" data-filter="normal" onclick="setDaltonism('normal')">Padrão</button>
-                        <button class="btn-daltonism" data-filter="protanopia" onclick="setDaltonism('protanopia')">Protanopia (Sem Vermelho)</button>
-                        <button class="btn-daltonism" data-filter="deuteranopia" onclick="setDaltonism('deuteranopia')">Deuteranopia (Sem Verde)</button>
-                        <button class="btn-daltonism" data-filter="tritanopia" onclick="setDaltonism('tritanopia')">Tritanopia (Sem Azul)</button>
-                    </div>
-                </div>
-            </section>
+    <!-- Configuração de Daltonismo -->
+    <div class="card shadow config-group">
+        <h3>Filtros de Daltonismo</h3>
+        <p class="subtitle" style="margin-bottom: 12px;">Selecione uma opção para adaptar a matriz de cores da tela:</p>
+        <div class="daltonism-options">
+            <button class="btn-daltonism active" data-filter="normal" onclick="setDaltonism('normal')">Padrão</button>
+            <button class="btn-daltonism" data-filter="protanopia" onclick="setDaltonism('protanopia')">Protanopia</button>
+            <button class="btn-daltonism" data-filter="deuteranopia" onclick="setDaltonism('deuteranopia')">Deuteranopia</button>
+            <button class="btn-daltonism" data-filter="tritanopia" onclick="setDaltonism('tritanopia')">Tritanopia</button>
+        </div>
+    </div>
+</section>
+
         </main>
     </div>
 
@@ -226,6 +229,44 @@
             document.getElementById(tabId).classList.add('active-tab');
             buttonElement.classList.add('active');
         }
+        // --- GERENCIADOR DE TEMAS (MODO ESCURO) ---
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Altera a classe ativa dos botões de tema
+    document.getElementById('btn-light').classList.remove('active');
+    document.getElementById('btn-dark').classList.remove('active');
+    
+    if (theme === 'dark') {
+        document.getElementById('btn-dark').classList.add('active');
+    } else {
+        document.getElementById('btn-light').classList.add('active');
+    }
+}
+
+// --- GERENCIADOR DE FILTROS DE DALTONISMO ---
+function setDaltonism(type) {
+    const body = document.body;
+    
+    // Remove qualquer filtro aplicado anteriormente
+    body.classList.remove('filter-protanopia', 'filter-deuteranopia', 'filter-tritanopia');
+    
+    // Se não for o modo padrão, injeta a classe correspondente ao filtro SVG do CSS
+    if (type !== 'normal') {
+        body.classList.add(`filter-${type}`);
+    }
+    
+    // Atualiza o estado visual (cor roxa) nos botões de daltonismo
+    const buttons = document.querySelectorAll('.btn-daltonism');
+    buttons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === type) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
