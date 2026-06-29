@@ -1,0 +1,80 @@
+// Exemplo lógico de redirecionamento no arquivo js/auth.js
+async function verificarNivelAcesso(user) {
+    const { data, error } = await supabase
+        .from('perfis')
+        .select('regra')
+        .eq('id', user.id)
+        .single();
+
+    if (data.regra === 'admin') {
+        window.location.href = 'admin.html'; // Vai para tela de Admin
+    } else {
+        window.location.href = 'dashboard.html'; // Vai para tela Comum
+    }
+    // ... dentro do seu arquivo script.js, localize a função handleAuthSubmit e adicione esta checagem no início:
+async function handleAuthSubmit(event) {
+    event.preventDefault();
+    const errorMessage = document.getElementById('error-message');
+    
+    // Recupera a instância global caso ela tenha atrasado para inicializar
+    if (!window.supabase && typeof supabase === 'undefined') {
+        if (errorMessage) errorMessage.innerText = "Erro de conexão: O banco de dados ainda não respondeu. Tente novamente em 2 segundos.";
+        console.error("Variável 'supabase' não encontrada no escopo global.");
+        return;
+    }
+    
+    // Cria um atalho seguro para a variável
+    const client = window.supabase || supabase;
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    try {
+        if (currentAuthMode === 'login') {
+            // Usa o cliente seguro que validamos acima
+            const { data: authData, error: authError } = await client.auth.signInWithPassword({
+                email, password
+            });
+            if (authError) throw authError;
+
+            const { data: perfil } = await client.from('perfis').select('is_dev').eq('id', authData.user.id).single();
+            if (perfil && perfil.is_dev === true) {
+                document.getElementById('menu-btn-admin').classList.remove('hidden');
+            } else {
+                document.getElementById('menu-btn-admin').classList.add('hidden');
+            }
+
+        } else {
+            // Cadastro de nova conta usando o cliente validado
+            const name = document.getElementById('register-name').value;
+            const plan = document.getElementById('register-plan').value;
+            
+            if (!name) { alert("Por favor, preencha o nome da sua empresa."); return; }
+
+            const { data: regData, error: regError } = await client.auth.signUp({
+                email, password
+            });
+            if (regError) throw regError;
+
+            const { error: perfilError } = await client.from('perfis').insert({
+                id: regData.user.id,
+                email: email,
+                nome_empresa: name,
+                plano_selecionado: plan,
+                is_dev: false
+            });
+            if (perfilError) throw perfilError;
+
+            alert(`Sua empresa "${name}" foi cadastrada com sucesso no plano ${plan}!`);
+        }
+
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('dashboard-screen').classList.remove('hidden');
+        if (errorMessage) errorMessage.innerText = "";
+
+    } catch (error) {
+        if (errorMessage) errorMessage.innerText = error.message || "Erro na autenticação.";
+    }
+}
+
+}
