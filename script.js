@@ -93,4 +93,32 @@ async function handleAuthSubmit(event) {
     }
 }
 
+// Credenciais cadastradas diretamente em código  
+const CREDENCIAIS\_AUTORIZADAS = {  
+email: "schamnesamuel@gmail.com",  
+password: "27032009sn"  
+}; 
+
+document.getElementById('loginForm')?.addEventListener('submit', function(e) {  
+e.preventDefault(); 
+
+const emailInput = document.getElementById('email').value;  
+const passwordInput = document.getElementById('password').value;  
+const errorDiv = document.getElementById('loginError'); 
+
+// Validação comparativa estática  
+if (emailInput === CREDENCIAIS\_AUTORIZADAS.email && passwordInput === CREDENCIAIS\_AUTORIZADAS.password) {  
+errorDiv.style.display = 'none'; 
+
+// Define que o usuário está autenticado na sessão do navegador  
+sessionStorage.setItem('isAdminAuthenticated', 'true'); 
+
+// Redireciona para a página de administração  
+window.location.href = 'dashboard.html';  
+} else {  
+// Exibe erro caso os dados estejam incorretos  
+errorDiv.style.display = 'block';  
+}  
+});
+
 }
