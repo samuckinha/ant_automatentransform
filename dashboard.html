@@ -23,7 +23,7 @@
                 <button class="menu-btn" data-tab="saude">💡 Saúde do Negócio</button>
                 <button class="menu-btn" data-tab="perfil">👤 Perfil</button>
                 <button class="menu-btn" data-tab="ajustes">⚙️ Ajustes</button>
-                <button class="menu-btn hidden" id="menu-btn-admin">⚡ Painel Dev</button>
+                <button class="menu-btn hidden" id="menu-btn-admin" data-tab="admin">⚡ Painel Dev</button>
             </nav>
             <button class="logout-btn" id="logout-btn">Sair da conta</button>
         </aside>
@@ -129,6 +129,58 @@
                         <button class="btn-config" data-filter="tritanopia">Tritanopia</button>
                         <button class="btn-config active" data-filter="none">Normal</button>
                     </div>
+                </div>
+            </section>
+
+            <section id="tab-admin" class="tab-content">
+                <h2>Painel Dev</h2>
+                <p class="subtitle">Ferramentas administrativas restritas a desenvolvedores</p>
+
+                <div class="cards-grid">
+                    <div class="card shadow">
+                        <h3>👥 Usuários Cadastrados</h3>
+                        <p class="value" id="admin-user-count">—</p>
+                        <p class="card-subtitle">Total de contas ativas no sistema</p>
+                    </div>
+                    <div class="card shadow">
+                        <h3>🏢 Empresas</h3>
+                        <p class="value" id="admin-company-count">—</p>
+                        <p class="card-subtitle">Empresas registradas</p>
+                    </div>
+                    <div class="card shadow border-highlight">
+                        <h3>⚡ Contas Dev</h3>
+                        <p class="value-green" id="admin-dev-count">—</p>
+                        <p class="card-subtitle">Usuários com privilégios de admin</p>
+                    </div>
+                </div>
+
+                <div class="card shadow" style="margin-top: 24px;">
+                    <h3>📋 Lista de Usuários</h3>
+                    <div class="table-container" style="margin-top: 16px; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>EMPRESA</th>
+                                    <th>EMAIL</th>
+                                    <th>PLANO</th>
+                                    <th>DEV</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-table-body">
+                                <tr><td colspan="4" style="text-align: center; color: var(--text-muted);">Carregando...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card shadow" style="margin-top: 24px;">
+                    <h3>🔧 Ações do Sistema</h3>
+                    <div class="daltonism-options" style="margin-top: 16px;">
+                        <button class="btn-config" id="admin-refresh-btn">🔄 Atualizar dados</button>
+                        <button class="btn-config" id="admin-promote-btn">⬆️ Promover usuário</button>
+                        <button class="btn-config" id="admin-demote-btn">⬇️ Rebaixar usuário</button>
+                    </div>
+                    <div id="admin-action-feedback" class="feedback" hidden></div>
                 </div>
             </section>
         </main>

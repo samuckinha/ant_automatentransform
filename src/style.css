@@ -155,6 +155,7 @@ h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -0
 .card h3 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 .card .value { font-size: 1.85rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
 .card .value-green { font-size: 1.85rem; font-weight: 800; color: var(--primary-green-dark); letter-spacing: -0.5px; }
+.card-subtitle { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
 [data-theme="dark"] .card .value-green { color: var(--primary-green); }
 .border-highlight { border-left: 5px solid var(--primary-green); }
 .card-success { border-left: 5px solid var(--primary-green); }
