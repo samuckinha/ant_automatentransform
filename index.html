@@ -3,91 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f7f8f5" />
-    <title>ANT — Entrar</title>
+    <meta name="theme-color" content="#ffffff" />
+    <title>Ciências da Computação</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
-  <body>
-    <main class="auth-layout">
-      <section class="intro-panel">
-        <div class="intro-content">
-          <div class="brand">
-            <div class="brand-mark">🐜</div>
-            <span>ANT</span>
+  <body class="course-page">
+    <main class="course-shell" aria-labelledby="course-title">
+      <header class="course-header">
+        <div class="course-number" aria-label="Curso número 3">3</div>
+        <h1 id="course-title">Ciências da Computação</h1>
+      </header>
+
+      <section class="unit-list" aria-label="Unidades do curso">
+        <article class="unit-card unit-card-network">
+          <div class="unit-illustration illustration-network" aria-hidden="true">
+            <span class="network-node node-one"></span>
+            <span class="network-node node-two"></span>
+            <span class="network-node node-three"></span>
+            <span class="network-node node-four"></span>
+            <span class="network-line line-one"></span>
+            <span class="network-line line-two"></span>
+            <span class="network-line line-three"></span>
           </div>
-          <div class="intro-copy">
-            <span class="eyebrow light">Gestão inteligente para o seu negócio</span>
-            <h1>Transforme seus números em decisões.</h1>
-            <p>Entre na sua conta para acessar a dashboard financeira, estoque e a saúde do seu negócio — tudo em um só lugar.</p>
+          <div class="unit-copy">
+            <span class="unit-label">UNIDADE</span>
+            <h2>Redes parte 1: conceitos e prática</h2>
           </div>
-          <div class="trust-line">
-            <span class="trust-icon">🛡️</span>
-            <span>Seus dados ficam protegidos com criptografia</span>
+          <span class="unit-badge" aria-label="Unidade concluída"><span></span></span>
+        </article>
+
+        <article class="unit-card unit-card-wifi">
+          <div class="unit-illustration illustration-wifi" aria-hidden="true">
+            <span class="wifi-antenna"></span>
+            <span class="wifi-base"></span>
+            <span class="wifi-highlight"></span>
           </div>
-        </div>
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
-      </section>
-
-      <section class="form-panel">
-        <div class="form-container">
-          <div class="mobile-brand brand">
-            <div class="brand-mark">🐜</div>
-            <span>ANT</span>
+          <div class="unit-copy">
+            <span class="unit-label">UNIDADE</span>
+            <h2>Redes parte 5: Wi-Fi</h2>
           </div>
+          <span class="unit-badge" aria-label="Unidade concluída"><span></span></span>
+        </article>
 
-          <div class="form-heading">
-            <span class="eyebrow">Bem-vindo</span>
-            <h2 id="form-title">Entre na sua conta</h2>
-            <p id="form-subtitle">Preencha seus dados para continuar.</p>
+        <article class="unit-card unit-card-arduino">
+          <div class="unit-illustration illustration-arduino" aria-hidden="true">
+            <span class="arduino-disc disc-minus">−</span>
+            <span class="arduino-disc disc-plus">+</span>
+            <span class="arduino-connector"></span>
           </div>
-
-          <div class="mode-switch" role="tablist">
-            <button id="tab-login" class="active" type="button">Entrar</button>
-            <button id="tab-signup" type="button">Criar conta</button>
+          <div class="unit-copy">
+            <span class="unit-label">UNIDADE</span>
+            <h2>Arduino: do zero ao jogo</h2>
           </div>
-
-          <form id="auth-form" novalidate>
-            <div class="input-group" id="name-group" hidden>
-              <label for="nome_empresa">Nome da empresa</label>
-              <div class="input-wrapper">
-                <span class="input-icon">🏢</span>
-                <input type="text" id="nome_empresa" placeholder="Ex: Padaria Pão Quente" autocomplete="organization" />
-              </div>
-            </div>
-
-            <div class="input-group">
-              <label for="email">Email</label>
-              <div class="input-wrapper">
-                <span class="input-icon">✉️</span>
-                <input type="email" id="email" placeholder="voce@exemplo.com" autocomplete="email" required />
-              </div>
-            </div>
-
-            <div class="input-group">
-              <label for="password">Senha</label>
-              <div class="input-wrapper">
-                <span class="input-icon">🔒</span>
-                <input type="password" id="password" placeholder="Mínimo 6 caracteres" autocomplete="current-password" required minlength="6" />
-                <button type="button" class="toggle-password" id="toggle-password" aria-label="Mostrar senha">👁️</button>
-              </div>
-            </div>
-
-            <div id="feedback" class="feedback" hidden></div>
-
-            <button class="btn-login" type="submit" id="submit-btn">
-              <span id="submit-text">Entrar na conta</span>
-            </button>
-          </form>
-
-          <p class="terms">Ao continuar, você concorda com os termos de uso e a política de privacidade do ANT.</p>
-        </div>
+          <span class="unit-badge" aria-label="Unidade concluída"><span></span></span>
+        </article>
       </section>
     </main>
-
-    <script type="module" src="/src/script.js"></script>
   </body>
 </html>
