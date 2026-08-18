@@ -3,53 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANT - Login</title>
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/login.css">
-
+    <title>ANT — Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
-    <div class="login-container">
-        <!-- Cabeçalho do App -->
-        <div class="brand">
-            <span class="logo-icon">🐜</span>
-            <span class="logo-text">ANT</span>
-        </div>
-
-        <!-- Card do Formulário de Login -->
-        <div class="login-card">
-            <div class="avatar-container">
-                <div class="avatar-icon">👤</div>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="brand-sidebar">
+                <span class="logo-icon-sidebar">🐜</span>
+                <span class="logo-text-sidebar">ANT</span>
             </div>
-            
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">✉️</span>
-                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
-                    </div>
-                </div>
+            <nav class="menu">
+                <button class="menu-btn active" data-tab="overview">📊 Visão Geral</button>
+                <button class="menu-btn" data-tab="dre">📋 Minha DRE</button>
+                <button class="menu-btn" data-tab="estoque">📦 Estoque</button>
+                <button class="menu-btn" data-tab="saude">💡 Saúde do Negócio</button>
+                <button class="menu-btn" data-tab="perfil">👤 Perfil</button>
+                <button class="menu-btn" data-tab="ajustes">⚙️ Ajustes</button>
+                <button class="menu-btn hidden" id="menu-btn-admin">⚡ Painel Dev</button>
+            </nav>
+            <button class="logout-btn" id="logout-btn">Sair da conta</button>
+        </aside>
 
-<<<<<<< HEAD
-                <div class="input-group">
-                    <label for="password">Senha</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="password" value="12345678" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-login">LOGIN</button>
-            </form>
-            <div id="error-message" class="error-msg"></div>
-        </div>
-    </div>
-
-    <script src="js/auth.js"></script>
-</body>
-</html>
-=======
+        <main class="main-content">
+            <section id="tab-overview" class="tab-content active-tab">
+                <h2>Visão Geral</h2>
+                <p class="subtitle">Resumo financeiro do seu negócio</p>
                 <div class="cards-grid">
                     <div class="card shadow">
                         <h3>💰 Receita Total</h3>
@@ -59,7 +41,7 @@
                         <h3>📋 Despesas</h3>
                         <p class="value">R$ 4.200,00</p>
                     </div>
-                    <div class="card shadow">
+                    <div class="card shadow border-highlight">
                         <h3>🪙 Lucro Líquido</h3>
                         <p class="value-green">R$ 8.250,00</p>
                     </div>
@@ -70,11 +52,9 @@
                 </div>
             </section>
 
-            <!-- ABA 2: MINHA DRE -->
             <section id="tab-dre" class="tab-content">
                 <h2>Minha DRE</h2>
                 <p class="subtitle">Controle financeiro simples e direto</p>
-                
                 <div class="table-container shadow">
                     <table>
                         <thead>
@@ -98,7 +78,6 @@
                 </div>
             </section>
 
-            <!-- ABA 3: ESTOQUE -->
             <section id="tab-estoque" class="tab-content">
                 <h2>Meu Estoque</h2>
                 <div class="stock-header">
@@ -110,7 +89,6 @@
                 </div>
             </section>
 
-            <!-- ABA 4: SAÚDE DO NEGÓCIO -->
             <section id="tab-saude" class="tab-content">
                 <h2>Saúde do Negócio</h2>
                 <div class="cards-grid">
@@ -131,36 +109,31 @@
                 </div>
             </section>
 
-            <!-- ABA 5: PERFIL -->
             <section id="tab-perfil" class="tab-content">
                 <h2>Seu Perfil</h2>
                 <div class="profile-container shadow">
                     <h3>👤 SOBRE VOCÊ</h3>
-                    <input type="text" value="Empreendedor Fulano de Souza" disabled>
+                    <input type="text" id="perfil-email" disabled>
                     <h3>🏢 SEU NEGÓCIO</h3>
-                    <input type="text" value="Fulano Calçados" disabled>
+                    <input type="text" id="perfil-empresa" disabled>
                 </div>
             </section>
 
-            <!-- ABA 6: AJUSTES -->
             <section id="tab-ajustes" class="tab-content">
                 <h2>Ajustes & Sistemas</h2>
                 <div class="card shadow">
                     <h3>Filtros de Daltonismo</h3>
                     <div class="daltonism-options">
-                        <button class="btn-config">Protanopia</button>
-                        <button class="btn-config">Deuteranopia</button>
-                        <button class="btn-config">Tritanopia</button>
+                        <button class="btn-config" data-filter="protanopia">Protanopia</button>
+                        <button class="btn-config" data-filter="deuteranopia">Deuteranopia</button>
+                        <button class="btn-config" data-filter="tritanopia">Tritanopia</button>
+                        <button class="btn-config active" data-filter="none">Normal</button>
                     </div>
                 </div>
             </section>
-
         </main>
     </div>
-    <script src="js/dashboard.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase.js"></script>
+
+    <script type="module" src="/src/dashboard.js"></script>
 </body>
 </html>
-
->>>>>>> 12fbd6edca4ab60bcb879e5eaefba7e6bf9123f8

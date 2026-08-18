@@ -1,594 +1,93 @@
-<!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANT - Business Intelligence</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <body>
-
-    <!-- ==========================================================================
-         0. PRÉ-PÁGINA INICIAL / LANDING PAGE COM PLANOS (Nova)
-         ========================================================================== -->
-    <div id="landing-screen" class="landing-container">
-        <header class="landing-header">
-            <div class="brand">
-                <span class="logo-icon"><img src="ant.jpg" class="logo-img" alt="ANT Logo"></span>
-                <span class="logo-text">ANT</span>
-            </div>
-            <div class="landing-nav-btns">
-                <button class="btn-nav-landing text-link" onclick="goToAuth('login')">Entrar</button>
-                <button class="btn-nav-landing btn-filled" onclick="goToAuth('register')">Criar Conta Grátis</button>
-            </div>
-        </header>
-
-        <section class="hero-section">
-            <h1>Impulsione seu negócio com <span class="text-gradient">Inteligência Real</span></h1>
-            <p class="hero-subtitle">A plataforma de Business Intelligence que simplifica sua DRE, controla seu estoque e prevê faturamento utilizando IA.</p>
-            <div class="hero-actions">
-                <button class="btn-hero-primary" onclick="goToAuth('register')">Começar Agora 🚀</button>
-                <a href="#plans-section" class="btn-hero-secondary">Ver Planos e Preços</a>
-            </div>
-        </section>
-
-        <!-- SEÇÃO DE PLANOS -->
-        <section id="plans-section" class="plans-container">
-            <h2>Planos sob medida para o seu crescimento</h2>
-            <p class="subtitle">Escolha a ferramenta ideal para o momento atual da sua empresa</p>
-
-            <div class="plans-grid">
-                <!-- Plano Starter -->
-                <div class="plan-card shadow">
-                    <div class="plan-tag">Essencial</div>
-                    <h3>Plano Starter</h3>
-                    <div class="plan-price">R$ 49<span class="period">/mês</span></div>
-                    <p class="plan-desc">Perfeito para autônomos e pequenas lojas começarem no BI.</p>
-                    <ul class="plan-features">
-                        <li>✔️ Resumo Financeiro Inteligente</li>
-                        <li>✔️ Minha DRE Automatizada</li>
-                        <li>✔️ Suporte via e-mail</li>
-                        <li>❌ Previsão de Demanda por IA</li>
-                    </ul>
-                    <button class="btn-plan-select" onclick="goToAuth('register', 'Starter')">Escolher Starter</button>
-                </div>
-
-                <!-- Plano Pro -->
-                <div class="plan-card shadow featured">
-                    <div class="plan-tag popular">Mais Vendido</div>
-                    <h3>Plano Pro</h3>
-                    <div class="plan-price">R$ 99<span class="period">/mês</span></div>
-                    <p class="plan-desc">O controle total do estoque ao financeiro com insights preditivos.</p>
-                    <ul class="plan-features">
-                        <li>✔️ Tudo do plano Starter</li>
-                        <li>✔️ Controle Inteligente de Estoque</li>
-                        <li>✔️ Diagnóstico "Saúde do Negócio"</li>
-                        <li>✔️ Insights de IA em Tempo Real</li>
-                    </ul>
-                    <button class="btn-plan-select featured-btn" onclick="goToAuth('register', 'Pro')">Experimentar Pro</button>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ==========================================================================
-         1. TELA DE AUTENTICAÇÃO UNIFICADA (Login & Cadastro Alternáveis)
-         ========================================================================== -->
-    <div id="auth-screen" class="login-container hidden">
-        <button class="btn-back-landing" onclick="goToLanding()">← Voltar ao Início</button>
-        
-        <div class="brand">
-            <span class="logo-icon"><img src="ant.jpg" class="logo-img" alt="ANT Logo"></span>
-            <span class="logo-text">ANT</span>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8f5" />
+    <title>ANT — Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="auth-layout">
+      <section class="intro-panel">
+        <div class="intro-content">
+          <div class="brand">
+            <div class="brand-mark">🐜</div>
+            <span>ANT</span>
+          </div>
+          <div class="intro-copy">
+            <span class="eyebrow light">Gestão inteligente para o seu negócio</span>
+            <h1>Transforme seus números em decisões.</h1>
+            <p>Entre na sua conta para acessar a dashboard financeira, estoque e a saúde do seu negócio — tudo em um só lugar.</p>
+          </div>
+          <div class="trust-line">
+            <span class="trust-icon">🛡️</span>
+            <span>Seus dados ficam protegidos com criptografia</span>
+          </div>
         </div>
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+      </section>
 
-        <div class="login-card shadow">
-            <!-- Abas internas para chaveamento limpo -->
-            <div class="auth-tabs">
-                <button id="tab-btn-login" class="auth-tab-toggle active" onclick="toggleAuthMode('login')">Entrar</button>
-                <button id="tab-btn-register" class="auth-tab-toggle" onclick="toggleAuthMode('register')">Cadastrar</button>
+      <section class="form-panel">
+        <div class="form-container">
+          <div class="mobile-brand brand">
+            <div class="brand-mark">🐜</div>
+            <span>ANT</span>
+          </div>
+
+          <div class="form-heading">
+            <span class="eyebrow">Bem-vindo</span>
+            <h2 id="form-title">Entre na sua conta</h2>
+            <p id="form-subtitle">Preencha seus dados para continuar.</p>
+          </div>
+
+          <div class="mode-switch" role="tablist">
+            <button id="tab-login" class="active" type="button">Entrar</button>
+            <button id="tab-signup" type="button">Criar conta</button>
+          </div>
+
+          <form id="auth-form" novalidate>
+            <div class="input-group" id="name-group" hidden>
+              <label for="nome_empresa">Nome da empresa</label>
+              <div class="input-wrapper">
+                <span class="input-icon">🏢</span>
+                <input type="text" id="nome_empresa" placeholder="Ex: Padaria Pão Quente" autocomplete="organization" />
+              </div>
             </div>
 
-            <!-- Formulário Unificado -->
-            <form id="authForm" onsubmit="handleAuthSubmit(event)">
-                <!-- Campo exclusivo de cadastro (escondido por padrão) -->
-                <div class="input-group register-only hidden">
-                    <label for="register-name">Nome Completo / Empresa</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">👤</span>
-                        <input type="text" id="register-name" placeholder="Ex: Fulano Calçados">
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="email">E-mail Corporativo</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">✉️</span>
-                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Senha</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="password" value="12345678" required>
-                    </div>
-                </div>
-
-                <!-- Campo exclusivo de cadastro para capturar o plano vindo da Landing Page -->
-                <div class="input-group register-only hidden">
-                    <label for="register-plan">Plano Selecionado</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📋</span>
-                        <select id="register-plan" class="select-styled">
-                            <option value="Starter">Plano Starter - R$ 49/mês</option>
-                            <option value="Pro" selected>Plano Pro - R$ 99/mês</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button type="submit" id="btn-auth-submit" class="btn-login">ENTRAR</button>
-            </form>
-            <div id="error-message" class="error-msg"></div>
-        </div>
-    </div>
-
-    <!-- 2. TELA DA DASHBOARD (Mantém sua estrutura padrão de abas) -->
-    <div id="dashboard-screen" class="dashboard-wrapper hidden">
-
-    <!-- 1. TELA DE LOGIN -->
-    <div id="auth-screen" class="login-container">
-        <div class="brand">
-            <span class="logo-icon">
-                <img src="ant.jpg" class="logo-img" alt="ANT Logo">
-            </span>
-            <span class="logo-text">ANT</span>
-        </div>
-
-        <div class="login-card shadow">
-            <div class="avatar-container">
-                <div class="avatar-icon">👤</div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <div class="input-wrapper">
+                <span class="input-icon">✉️</span>
+                <input type="email" id="email" placeholder="voce@exemplo.com" autocomplete="email" required />
+              </div>
             </div>
-            
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">✉️</span>
-                        <input type="email" id="email" value="fulano.souza@gmail.com" required>
-                    </div>
-                </div>
 
-                <div class="input-group">
-                    <label for="password">Senha</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="password" value="12345678" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-login">LOGIN</button>
-            </form>
-            <div id="error-message" class="error-msg"></div>
-        </div>
-    </div>
-
-    <!-- 2. TELA DA DASHBOARD -->
-    <div id="dashboard-screen" class="dashboard-wrapper hidden">
-        <aside class="sidebar">
-            <div class="brand-sidebar">
-                <span class="logo-icon">
-                    <img src="ant.jpg" class="logo-img-sidebar" alt="ANT Logo">
-                </span>
-                <span class="logo-text">ANT</span>
+            <div class="input-group">
+              <label for="password">Senha</label>
+              <div class="input-wrapper">
+                <span class="input-icon">🔒</span>
+                <input type="password" id="password" placeholder="Mínimo 6 caracteres" autocomplete="current-password" required minlength="6" />
+                <button type="button" class="toggle-password" id="toggle-password" aria-label="Mostrar senha">👁️</button>
+              </div>
             </div>
-            <nav class="menu">
-                <button class="menu-btn active" onclick="switchTab('tab-resumo', this)">💰 Resumo</button>
-                <button class="menu-btn" onclick="switchTab('tab-dre', this)">📋 Minha DRE</button>
-                <button class="menu-btn" onclick="switchTab('tab-estoque', this)">📦 Estoque</button>
-                <button class="menu-btn" onclick="switchTab('tab-saude', this)">🩺 Saúde</button>
-                <button class="menu-btn" onclick="switchTab('tab-perfil', this)">👤 Perfil</button>
-                <button class="menu-btn settings-btn" onclick="switchTab('tab-ajustes', this)">⚙️ Ajustes</button>
-                 <button id="menu-btn-admin" class="menu-btn hidden" onclick="switchTab('tab-admin', this)" style="border-left: 4px solid var(--primary-purple);">⚡ Painel Dev</button>
-    
-    <button class="menu-btn settings-btn" onclick="switchTab('tab-ajustes', this)">⚙️ Ajustes</button>
-</nav>
-            </nav>
-            <button class="logout-btn" onclick="handleLogout()">Sair 🚪</button>
-        </aside>
 
-        <main class="main-content">
-            <!-- ABA 1: RESUMO -->
-            <section id="tab-resumo" class="tab-content active-tab">
-                <h2>Resumo Financeiro</h2>
-                <p class="subtitle">Visão geral do seu negócio impulsionado por IA</p>
-                <div class="cards-grid">
-                    <div class="card shadow">
-                        <h3>Total Receita</h3>
-                        <p class="value">R$ 12.450,00</p>
-                    </div>
-                    <div class="card shadow">
-                        <h3>Despesas</h3>
-                        <p class="value">R$ 4.200,00</p>
-                    </div>
-                    <div class="card shadow border-highlight">
-                        <h3>Lucro Líquido</h3>
-                        <p class="value-green">R$ 8.250,00</p>
-                    </div>
-                    <div class="card shadow">
-                        <h3>Impacto Marketing</h3>
-                        <p class="value">R$ 5.950,00</p>
-                    </div>
-                </div>
-            </section>
+            <div id="feedback" class="feedback" hidden></div>
 
-            <!-- ABA 2: MINHA DRE -->
-            <section id="tab-dre" class="tab-content">
-                <h2>Minha DRE</h2>
-                <p class="subtitle">Controle financeiro simples e direto</p>
-                
-                <div class="table-container shadow">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>DESCRIÇÃO</th>
-                                <th>TIPO</th>
-                                <th>VALORES</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Venda de Produtos</td><td><span class="badge badge-in">RECEITA</span></td><td>R$ 5.000,00</td></tr>
-                            <tr><td>Prestação de Serviços</td><td><span class="badge badge-in">RECEITA</span></td><td>R$ 3.500,00</td></tr>
-                            <tr><td>Impostos sobre Venda</td><td><span class="badge badge-out">DESPESA</span></td><td>R$ 450,00</td></tr>
-                            <tr><td>Custos de Mercadoria (CPV)</td><td><span class="badge badge-out">DESPESA</span></td><td>R$ 1.200,00</td></tr>
-                        </tbody>
-                    </table>
-                    <div class="dre-footer">
-                        <span>Lucro Líquido Real</span>
-                        <strong class="value-green">R$ 6.400,00</strong>
-                    </div>
-                </div>
-            </section>
+            <button class="btn-login" type="submit" id="submit-btn">
+              <span id="submit-text">Entrar na conta</span>
+            </button>
+          </form>
 
-            <!-- ABA 3: ESTOQUE -->
-            <section id="tab-estoque" class="tab-content">
-                <h2>Meu Estoque</h2>
-                <p class="subtitle">Gerenciamento inteligente de produtos</p>
-                <div class="stock-header">
-                    <input type="text" placeholder="Buscar categoria ou produto..." class="search-bar shadow">
-                    <div class="stock-total shadow">TOTAL EM ESTOQUE: <strong>181</strong></div>
-                </div>
-                <div class="alert-banner">
-                    ⚠️ <strong>PRODUTOS ACABANDO:</strong> Alguns itens estão em nível crítico. Reponha logo para não perder vendas.
-                </div>
-            </section>
-
-            <!-- ABA 4: SAÚDE DO NEGÓCIO -->
-            <section id="tab-saude" class="tab-content">
-                <h2>Saúde do Negócio</h2>
-                <p class="subtitle">Pontos de atenção coletados pela inteligência</p>
-                <div class="cards-grid">
-                    <div class="card card-success shadow">
-                        <h3>✔️ ACERTOS</h3>
-                        <ul>
-                            <li>A loja está sendo mais reconhecida</li>
-                            <li>Boas avaliações de clientes (Google Meu Negócio)</li>
-                        </ul>
-                    </div>
-                    <div class="card card-danger shadow">
-                        <h3>❌ ERROS</h3>
-                        <ul>
-                            <li>Falta de planejamento</li>
-                            <li>Demora na reposição de produtos</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ABA 5: PERFIL -->
-            <section id="tab-perfil" class="tab-content">
-                <h2>Seu Perfil</h2>
-                <p class="subtitle">Informações de cadastro do administrador</p>
-                <div class="profile-container shadow">
-                    <h3>👤 SOBRE VOCÊ</h3>
-                    <input type="text" value="Empreendedor Fulano de Souza" disabled class="input-styled">
-                    <h3>🏢 SEU NEGÓCIO</h3>
-                    <input type="text" value="Fulano Calçados" disabled class="input-styled">
-                </div>
-            </section>
-
-      <!-- ABA 6: AJUSTES -->
-<section id="tab-ajustes" class="tab-content">
-    <h2>Ajustes & Sistemas</h2>
-    <p class="subtitle">Configurações de acessibilidade e interface</p>
-    
-    <!-- Configuração de Tema -->
-    <div class="card shadow config-group">
-        <h3>Visualização da Interface</h3>
-        <div class="theme-toggle-container">
-            <button class="btn-config active" id="btn-light" onclick="setTheme('light')">☀️ Modo Claro</button>
-            <button class="btn-config" id="btn-dark" onclick="setTheme('dark')">🌙 Modo Escuro</button>
+          <p class="terms">Ao continuar, você concorda com os termos de uso e a política de privacidade do ANT.</p>
         </div>
-    </div>
+      </section>
+    </main>
 
-    <!-- Configuração de Daltonismo -->
-    <div class="card shadow config-group">
-        <h3>Filtros de Daltonismo</h3>
-        <p class="subtitle" style="margin-bottom: 12px;">Selecione uma opção para adaptar a matriz de cores da tela:</p>
-        <div class="daltonism-options">
-            <button class="btn-daltonism active" data-filter="normal" onclick="setDaltonism('normal')">Padrão</button>
-            <button class="btn-daltonism" data-filter="protanopia" onclick="setDaltonism('protanopia')">Protanopia</button>
-            <button class="btn-daltonism" data-filter="deuteranopia" onclick="setDaltonism('deuteranopia')">Deuteranopia</button>
-            <button class="btn-daltonism" data-filter="tritanopia" onclick="setDaltonism('tritanopia')">Tritanopia</button>
-        </div>
-    </div>
-</section>
-<!-- NOVA ABA: PAINEL DO ADMINISTRADOR / DEV -->
-<section id="tab-admin" class="tab-content">
-    <h2>Painel do Desenvolvedor</h2>
-    <p class="subtitle">Console de gerenciamento, logs do sistema e correções rápidas</p>
-    
-    <div class="cards-grid" style="margin-bottom: 24px;">
-        <div class="card shadow" style="border-top: 4px solid var(--primary-purple);">
-            <h3>Status do Sistema</h3>
-            <p class="value" style="color: var(--primary-green-dark); font-size: 1.5rem;">● Operacional</p>
-        </div>
-        <div class="card shadow">
-            <h3>Versão do App</h3>
-            <p class="value" style="font-size: 1.5rem;">v2.4.0-stable</p>
-        </div>
-        <div class="card shadow">
-            <h3>Conexão Supabase</h3>
-            <p class="value" style="font-size: 1.5rem; color: #12B76A;">Ativa</p>
-        </div>
-    </div>
-
-    <div class="card shadow" style="margin-bottom: 24px;">
-        <h3>⚙️ Ferramentas de Correção Rápida</h3>
-        <p class="subtitle" style="margin-bottom: 16px;">Comandos diretos de manutenção do banco de dados e limpeza de cache.</p>
-        <div class="daltonism-options" style="margin-top: 0;">
-            <button class="btn-config" onclick="clearSystemCache()">Limpar Cache da IA</button>
-            <button class="btn-config" onclick="triggerDatabaseSync()">Forçar Sincronização DRE</button>
-            <button class="btn-config" style="border-color: var(--danger-red); color: var(--danger-text);" onclick="toggleMaintenanceMode()">Alternar Modo Manutenção</button>
-        </div>
-    </div>
-
-    <div class="table-container shadow">
-        <div style="padding: 20px 24px; font-weight: 700; border-bottom: 1px solid var(--border-color);">
-            📋 Logs de Erros Recentes (Últimas 24h)
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>TIMESTAMP</th>
-                    <th>MÓDULO</th>
-                    <th>ERRO RETORNADO</th>
-                    <th>AÇÃO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2026-06-29 14:22:10</td>
-                    <td><span class="badge badge-out">SUPABASE API</span></td>
-                    <td><code>AuthSessionMissing: jwt expired</code></td>
-                    <td><button class="btn-config" style="padding: 4px 10px; font-size: 0.8rem;" onclick="alert('Token renovado automaticamente via Refresh Token')">Resolver</button></td>
-                </tr>
-                <tr>
-                    <td>2026-06-29 11:05:43</td>
-                    <td><span class="badge" style="background: #FEF0C7; color: #B54708;">STOCK_ENGINE</span></td>
-                    <td><code>NegativeStockValueException: Item #482</code></td>
-                    <td><button class="btn-config" style="padding: 4px 10px; font-size: 0.8rem;" onclick="alert('Estoque corrigido para zero')">Corrigir</button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
-
-
-        </main>
-    </div>
-
-    <!-- MATRIZES DE FILTRO SVG PARA ACESSIBILIDADE DE DALTONISMO -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
-        <defs>
-            <filter id="protanopia-filter">
-                <feColorMatrix type="matrix" values="0.567,0.433,0,0,0  0.558,0.442,0,0,0  0,0.242,0.758,0,0  0,0,0,1,0"/>
-            </filter>
-            <filter id="deuteranopia-filter">
-                <feColorMatrix type="matrix" values="0.625,0.375,0,0,0  0.7,0.3,0,0,0  0,0.3,0.7,0,0  0,0,0,1,0"/>
-            </filter>
-            <filter id="tritanopia-filter">
-
-    <!-- SCRIPT DE NAVEGAÇÃO -->
-    <script>
-       // ==========================================================================
-// 1. SISTEMA DE ROTEAMENTO (LANDING PAGE, LOGIN E CADASTRO)
-// ==========================================================================
-let currentAuthMode = 'login';
-
-function goToAuth(mode, selectedPlan = 'Pro') {
-    // Esconde a Landing Page e exibe a tela de Autenticação
-    document.getElementById('landing-screen').classList.add('hidden');
-    document.getElementById('auth-screen').classList.remove('hidden');
-    
-    // Chaveia o formulário para o modo correto (Login ou Cadastro)
-    toggleAuthMode(mode);
-    
-    // Pré-seleciona o plano escolhido caso vá para o Cadastro
-    if (mode === 'register') {
-        const planSelect = document.getElementById('register-plan');
-        if (planSelect) planSelect.value = selectedPlan;
-    }
-}
-
-function goToLanding() {
-    // Retorna para a página inicial com os planos
-    document.getElementById('auth-screen').classList.add('hidden');
-    document.getElementById('landing-screen').classList.remove('hidden');
-}
-
-function toggleAuthMode(mode) {
-    currentAuthMode = mode;
-    const registerFields = document.querySelectorAll('.register-only');
-    const submitBtn = document.getElementById('btn-auth-submit');
-    const tabLogin = document.getElementById('tab-btn-login');
-    const tabRegister = document.getElementById('tab-btn-register');
-    
-    // Reseta classes ativas das abas
-    if (tabLogin) tabLogin.classList.remove('active');
-    if (tabRegister) tabRegister.classList.remove('active');
-    
-    if (mode === 'login') {
-        if (tabLogin) tabLogin.classList.add('active');
-        if (submitBtn) submitBtn.innerText = "ENTRAR";
-        registerFields.forEach(el => el.classList.add('hidden'));
-    } else {
-        if (tabRegister) tabRegister.classList.add('active');
-        if (submitBtn) submitBtn.innerText = "CRIAR CONTA";
-        registerFields.forEach(el => el.classList.remove('hidden'));
-    }
-}
-
-// ==========================================================================
-// 2. INTEGRAÇÃO E SUBMISSÃO DE FORMULÁRIO (SUPABASE / SEGURANÇA)
-// ==========================================================================
-async function handleAuthSubmit(event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('error-message');
-    
-    try {
-        if (currentAuthMode === 'login') {
-            // Executa o login na API do Supabase
-            const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-            if (authError) throw authError;
-
-            // Valida privilégios de Desenvolvedor no banco de dados
-            const { data: perfil, error: perfilError } = await supabase
-                .from('perfis')
-                .select('is_dev')
-                .eq('id', authData.user.id)
-                .single();
-                
-            if (perfil && perfil.is_dev === true) {
-                document.getElementById('menu-btn-admin').classList.remove('hidden');
-            } else {
-                document.getElementById('menu-btn-admin').classList.add('hidden');
-            }
-
-        } else {
-            // Executa a criação de uma nova conta de usuário comum
-            const name = document.getElementById('register-name').value;
-            const plan = document.getElementById('register-plan').value;
-            
-            if (!name) { 
-                alert("Por favor, informe o nome completo ou o nome da sua empresa."); 
-                return; 
-            }
-
-            const { data: regData, error: regError } = await supabase.auth.signUp({
-                email: email,
-                password: password
-            });
-            if (regError) throw regError;
-
-            // Insere os dados básicos na tabela de perfis de forma segura (is_dev sempre false)
-            const { error: perfilError } = await supabase.from('perfis').insert({
-                id: regData.user.id,
-                email: email,
-                is_dev: false
-            });
-            if (perfilError) throw perfilError;
-
-            alert(`Sua empresa "${name}" foi cadastrada com sucesso no plano ${plan}!`);
-        }
-
-        // Se passar por qualquer uma das validações, exibe o painel
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('dashboard-screen').classList.remove('hidden');
-        if (errorMessage) errorMessage.innerText = "";
-
-    } catch (error) {
-        if (errorMessage) errorMessage.innerText = error.message || "Usuário ou senha inválidos.";
-    }
-}
-
-function handleLogout() {
-    // Esconde a interface administrativa e envia o usuário de volta para a Landing Page
-    document.getElementById('dashboard-screen').classList.add('hidden');
-    document.getElementById('landing-screen').classList.remove('hidden');
-    
-    // Garante que o painel de dev seja trancado
-    document.getElementById('menu-btn-admin').classList.add('hidden');
-    
-    // Termina a sessão no Supabase
-    supabase.auth.signOut();
-}
-
-// ==========================================================================
-// 3. NAVEGAÇÃO DA DASHBOARD (ABAS INTERNAS)
-// ==========================================================================
-function switchTab(tabId, buttonElement) {
-    const contents = document.querySelectorAll('.tab-content');
-    contents.forEach(content => content.classList.remove('active-tab'));
-
-    const buttons = document.querySelectorAll('.menu-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
-
-    document.getElementById(tabId).classList.add('active-tab');
-    buttonElement.classList.add('active');
-}
-
-// ==========================================================================
-// 4. PREFERÊNCIAS VISUAIS (MODO ESCURO E ACESSIBILIDADE DALTONISMO)
-// ==========================================================================
-function setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    
-    document.getElementById('btn-light').classList.remove('active');
-    document.getElementById('btn-dark').classList.remove('active');
-    
-    if (theme === 'dark') {
-        document.getElementById('btn-dark').classList.add('active');
-    } else {
-        document.getElementById('btn-light').classList.add('active');
-    }
-}
-
-function setDaltonism(type) {
-    const body = document.body;
-    
-    // Remove todos os filtros aplicados anteriormente
-    body.classList.remove('filter-protanopia', 'filter-deuteranopia', 'filter-tritanopia');
-    
-    // Injeta a classe correspondente ao filtro matemático SVG configurado no CSS
-    if (type !== 'normal') {
-        body.classList.add(`filter-${type}`);
-    }
-    
-    // Modifica o estado visual dos botões de daltonismo
-    const buttons = document.querySelectorAll('.btn-daltonism');
-    buttons.forEach(btn => {
-        if (btn.getAttribute('data-filter') === type) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
-        }
-    });
-}
-
-
-    </script>
-
-    <script src="script.js" defer></script>
-        <script type="module" src="script.js" defer></script>
-
-</body>
+    <script type="module" src="/src/script.js"></script>
+  </body>
 </html>
